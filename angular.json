@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "questionnare-portal"
+    }
+  },
+  "defaultProject": "questionnare-portal",
+  "cli": {
+    "analytics": false
+  }
 }
