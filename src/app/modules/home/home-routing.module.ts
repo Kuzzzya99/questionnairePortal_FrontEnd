@@ -7,7 +7,7 @@ import {QuestionnaireFormComponent} from "./components/questionnaire-form/questi
 import {ResponsesComponent} from "./components/responses/responses.component";
 import {SuccessSubmitComponent} from "./components/success-submit/success-submit.component";
 
-const authRoutes: Routes = [
+const homeRoutes: Routes = [
   {path: 'changePassword', component: ChangePasswordComponent},
   {path: 'editProfile', component: EditProfileComponent},
   {path: 'homePage', component: HomePageComponent},
@@ -19,7 +19,7 @@ const authRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(authRoutes)],
+  imports: [RouterModule.forChild(homeRoutes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule { }
+export class HomeRoutingModule { }
