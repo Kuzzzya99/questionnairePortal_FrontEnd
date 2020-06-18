@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ResponsesService} from "../../services/responses-service";
 
 @Component({
   selector: 'app-responses',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResponsesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:ResponsesService) { }
 
   ngOnInit(): void {
+  }
+
+  responses() {
+    this.service.responses().subscribe(data => {
+      console.log(data);
+    })
   }
 
 }

@@ -3,17 +3,18 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 
 @Injectable({
-  providedIn: "root"
+  providedIn:"root"
 })
-export class LoginService {
+
+export class ChangePasswordService{
+
   constructor(private http: HttpClient) {
   }
 
-  login(email: string, password: string) {
-    return this.http.post(environment.host + "/auth", {
-      login: email,
-      password
+  changePassword(password:string, newPassword:string){
+    return this.http.post(environment.host + "/change_password", {
+      password,
+      newPassword
     })
   }
-
 }
