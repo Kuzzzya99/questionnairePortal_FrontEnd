@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {AuthRoutingModule} from "./auth-routing.module";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 
@@ -14,6 +15,7 @@ import {AuthRoutingModule} from "./auth-routing.module";
   imports: [
     CommonModule,
     AuthRoutingModule,
+    HttpClientModule,
   ]
 })
 export class AuthModule { }
