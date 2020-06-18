@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ResponsesService} from "../../services/responses-service";
+import {ResponsesMockService} from "../../mock-services/responses-mock-service";
 
 @Component({
   selector: 'app-responses',
@@ -8,13 +9,20 @@ import {ResponsesService} from "../../services/responses-service";
 })
 export class ResponsesComponent implements OnInit {
 
-  constructor(private service:ResponsesService) { }
+  constructor(private service:ResponsesService,
+              private mockService:ResponsesMockService) { }
 
   ngOnInit(): void {
   }
 
+  // responses() {
+  //   this.service.responses().subscribe(data => {
+  //     console.log(data);
+  //   })
+  // }
+
   responses() {
-    this.service.responses().subscribe(data => {
+    this.mockService.responses().subscribe(data => {
       console.log(data);
     })
   }

@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
+import {of} from "rxjs";
 
 @Injectable({
   providedIn:"root"
 })
 
-export class EditProfileService{
+export class EditProfileMockService{
 
   constructor(private http: HttpClient) {}
 
@@ -14,13 +15,7 @@ export class EditProfileService{
               lastName:string,
               email:string,
               phoneNumber:string){
-    return this.http.post(environment.host + "/edit_profile", {
-        firstName,
-        lastName,
-        email,
-        phoneNumber
-      }
-    )
+    return of("profileedit");
   }
 
 
