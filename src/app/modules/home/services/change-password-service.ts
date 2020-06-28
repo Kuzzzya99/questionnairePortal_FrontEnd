@@ -17,4 +17,8 @@ export class ChangePasswordService{
       newPassword
     })
   }
+
+  getUser(){
+    return this.http.get(environment.host + "/get_user")
+  }
 }

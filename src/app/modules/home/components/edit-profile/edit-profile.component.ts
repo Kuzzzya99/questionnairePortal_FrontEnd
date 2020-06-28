@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EditProfileService} from "../../services/edit-profile-service";
 import {EditProfileMockService} from "../../mock-services/edit-profile-mock-service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,11 +15,27 @@ export class EditProfileComponent implements OnInit {
   private email;
   private phoneNumber;
 
+  public formGroup:FormGroup;
+  public user = "JohnDoe@gmail.com";
+
   constructor(private service: EditProfileService,
               private mockService: EditProfileMockService) {
   }
 
   ngOnInit(): void {
+    this.formGroup = new FormGroup({
+      Username: new FormControl('', [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(5)
+      ]),
+      Name: new FormControl('',[
+        Validators.pattern('^[A-Z][a-z]+')
+      ]),
+      Phone: new FormControl('',[
+        Validators.pattern('^[\\+\\d+]')
+      ])
+    })
   }
 
   // editProfile(firstName: string,

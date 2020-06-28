@@ -1,1 +1,24 @@
-<p>register works!</p>
+<div class="container">
+  <div class="container__inner">
+    <div class="logo">
+      <div class="logo__black">LOGO</div>
+      <div class="logo__blue">TYPE</div>
+    </div>
+    <div class="title">
+      Sign Up
+    </div>
+    <div class="form" [formGroup]="formGroup">
+      <input type="text" placeholder="Email" formControlName="Username">
+      <input type="password" placeholder="Password" formControlName="Password">
+      <input type="password" placeholder="Confirm Password" formControlName="Password">
+      <input type="text" placeholder="First Name" formControlName="Name">
+      <input type="text" placeholder="Last Name" formControlName="Name">
+      <input type="text" placeholder="Phone Number" formControlName="Password">
+      <button [disabled]="!formGroup.valid" [class.disabled]="!formGroup.valid">SIGN UP</button>
+    </div>
+    <div class="have-account">
+      <div class="have-account__text">Already have account?</div>
+      <div class="have-account__link" routerLink="../login" routerLinkActive="active">Log In</div>
+    </div>
+  </div>
+</div>

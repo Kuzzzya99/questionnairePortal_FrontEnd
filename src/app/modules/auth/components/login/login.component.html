@@ -1,4 +1,23 @@
 <div class="container">
-  <div class="logo"></div>
-  <div class="title"></div>
+  <div class="container__inner">
+    <div class="logo">
+      <div class="logo__black">LOGO</div>
+      <div class="logo__blue">TYPE</div>
+    </div>
+    <div class="title">
+      Log In
+    </div>
+    <div class="form" [formGroup]="formGroup">
+      <input type="text" placeholder="Email" formControlName="Username">
+<!--      <mat-error *ngIf="formGroup.get('Username').hasError('required')">-->
+<!--        <small>Email is required</small>-->
+<!--      </mat-error>-->
+      <input type="password" placeholder="Password" formControlName="Password">
+      <button [disabled]="!formGroup.valid" [class.disabled]="!formGroup.valid">LOG IN</button>
+    </div>
+    <div class="new-account">
+      <div class="new-account__text">Don't have account?</div>
+      <div class="new-account__link" routerLink="../register" routerLinkActive="active">Sign Up</div>
+    </div>
+  </div>
 </div>

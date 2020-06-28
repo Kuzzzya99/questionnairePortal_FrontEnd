@@ -12,14 +12,17 @@ import {HomePageMockService} from "../../mock-services/home-page-mock-service";
 })
 export class HomePageComponent implements OnInit {
 
+  public user= "JohnDoe@gmail.com";
+  public arr = [1, 2, 3];
   private field:Field = new Field("6", "Color", "text", true, true)
   constructor(private service: HomePageService,
               private mockService: HomePageMockService) { }
 
   ngOnInit(): void {
+
   }
 
-  homePagePost(field: Field) {
+  homePagePost(field=this.field) {
     this.mockService.homePagePost(field).subscribe(data => {
       console.log(data);
     })
@@ -31,7 +34,7 @@ export class HomePageComponent implements OnInit {
     })
   }
 
-  homePagePut(field: Field) {
+  homePagePut(field=this.field) {
     this.mockService.homePagePut(field).subscribe(data => {
       console.log(data);
     })
