@@ -1,1 +1,41 @@
-<p>questionnaire-form works!</p>
+<div class="container">
+  <app-nav [signIn]=false style="width: 100%"></app-nav>
+  <div class="container__inner">
+    <div class="title">
+    </div>
+    <div class="form">
+      <div *ngFor="let item of numOfFields">
+        <div>
+          {{item.label}}
+        </div>
+        <div *ngIf="item.type === 'single_line_text'">
+          <input type="text">
+        </div>
+        <div *ngIf="item.type === 'multiline_line_text'">
+          <textarea rows="5"></textarea>
+        </div>
+        <div *ngIf="item.type === 'radio_button'">
+          <label *ngFor="let n of numOfOptions"><input type="radio">{{n.value}}</label>
+        </div>
+        <div *ngIf="item.type === 'checkbox'">
+          <label *ngFor="let n of numOfOptions"><input type="checkbox">{{n.value}}</label>
+        </div>
+        <div *ngIf="item.type === 'combobox'">
+          <select class="form-control">
+            <option *ngFor="let n of numOfOptions">{{n.value}}</option>
+          </select>
+        </div>
+        <div *ngIf="item.type === 'date'">
+          <div class="input-group date" data-provide="date-picker">
+            <input type="text" class="form-control">
+            <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <button>SUBMIT</button>
+    </div>
+  </div>
+</div>

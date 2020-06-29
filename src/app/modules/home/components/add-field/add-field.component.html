@@ -1,6 +1,6 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add field</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{text}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -37,6 +37,8 @@
   </div>
 </ng-template>
 
-<button class="title__button" (click)="open(content)">
+<button class="title__button" (click)="open(content)" *ngIf="buttonAdd">
   <mat-icon class="mat-add-icon">close</mat-icon>
   <a>ADD FIELD</a></button>
+
+<mat-icon (click)="open(content)" *ngIf="!buttonAdd">edit</mat-icon>

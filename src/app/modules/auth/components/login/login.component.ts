@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   public formGroup: FormGroup;
 
   constructor(private loginService: LoginService,
-              private mockService: LoginMockService,
               public router: Router) {
   }
 
@@ -33,17 +32,18 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // login(email = this.email, password = this.password) {
-  //
-  //   this.loginService.login(email, password).subscribe(data => {
-  //     console.log(data);
-  //   })
+  login() {
 
-  login(email = this.email, password = this.password) {
-
-    this.mockService.login(email, password).subscribe(data => {
+    this.loginService.login(this.formGroup.value.Username, this.formGroup.value.Password).subscribe(data => {
       console.log(data);
     })
 
+    // login(email = this.email, password = this.password) {
+    //
+    //   this.mockService.login(email, password).subscribe(data => {
+    //     console.log(data);
+    //   })
+    //
+    // }
   }
 }

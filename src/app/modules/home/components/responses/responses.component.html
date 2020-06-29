@@ -1,1 +1,33 @@
-<p>responses works!</p>
+
+<div class="container">
+  <app-nav [signIn]=true style="width: 100%"></app-nav>
+  <div class="container__inner">
+    <div class="title">
+      <div class="title__text">Responses</div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col" *ngFor="let item of numOfFields">Label</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let item of numOfResponses">
+        <td *ngFor="let item of numOfFields">Name</td>
+      </tr>
+      </tbody>
+
+    </table>
+    <div class="mat-paginator">
+      <ngb-pagination [(page)]="page"
+                      [pageSize]="pageSize"
+                      [collectionSize]="numOfResponses.length">
+        <ng-template ngbPaginationEllipsis>...</ng-template>
+        <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+      </ngb-pagination>
+
+    </div>
+  </div>
+</div>
+

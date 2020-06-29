@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {HomePageService} from "../../services/home-page-service";
 import {HomePageMockService} from "../../mock-services/home-page-mock-service";
@@ -11,6 +11,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class AddFieldComponent implements OnInit {
   formGroup: FormGroup;
+  @Input() text: string;
+  @Input() buttonAdd: boolean;
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({

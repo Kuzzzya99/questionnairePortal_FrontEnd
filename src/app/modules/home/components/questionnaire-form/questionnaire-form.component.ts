@@ -3,6 +3,8 @@ import {QuestionnaireFormService} from "../../services/questionnaire-form-servic
 import {environment} from "../../../../../environments/environment";
 import {Answer} from "../../../../model/Answer";
 import {QuestionnaireFormMockService} from "../../mock-services/questionnaire-form-mock-service";
+import {Field} from "../../../../model/Field";
+import {FieldOption} from "../../../../model/FieldOption";
 
 @Component({
   selector: 'app-questionnaire-form',
@@ -11,6 +13,8 @@ import {QuestionnaireFormMockService} from "../../mock-services/questionnaire-fo
 })
 export class QuestionnaireFormComponent implements OnInit {
 
+  public numOfFields: Field[] = [];
+  public numOfOptions: FieldOption[] = [];
   private answer: Answer[] = [new Answer(1, "Politykin")]
 
   constructor(private service: QuestionnaireFormService,
@@ -18,6 +22,7 @@ export class QuestionnaireFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   // getFields() {

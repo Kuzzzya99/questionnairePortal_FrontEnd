@@ -1,10 +1,11 @@
+
 <div class="container">
-  <app-nav style="width: 100%"></app-nav>
+  <app-nav [signIn]=true style="width: 100%"></app-nav>
   <div class="container__inner">
     <div class="title">
       <div class="title__text">Fields</div>
       <div class="title__button-container">
-       <app-add-field></app-add-field>
+       <app-add-field [text]="'Add field'" [buttonAdd]=true></app-add-field>
       </div>
 
 
@@ -22,12 +23,12 @@
       </thead>
       <tbody>
       <tr *ngFor="let item of arr">
-        <td>FGHJK</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td>Name</td>
+        <td>Single line text</td>
+        <td>true</td>
+        <td>true</td>
         <td>
-          <mat-icon>edit</mat-icon>
+          <app-add-field [text]="'Edit field'" [buttonAdd]=false></app-add-field>
         </td>
         <td>
           <mat-icon>delete</mat-icon>

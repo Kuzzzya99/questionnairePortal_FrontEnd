@@ -9,6 +9,12 @@ import {ResponsesMockService} from "../../mock-services/responses-mock-service";
 })
 export class ResponsesComponent implements OnInit {
 
+  public user = "JohnDoe@gmail.com";
+  public numOfFields: number[] = [1, 2, 3, 4];
+  public numOfResponses: number[] = [1, 2, 3, 4, 5, 6];
+  page = 1;
+  pageSize = 10;
+
   constructor(private service: ResponsesService,
               private mockService: ResponsesMockService) {
   }
@@ -21,6 +27,7 @@ export class ResponsesComponent implements OnInit {
   //     console.log(data);
   //   })
   // }
+
 
   responses() {
     this.mockService.responses().subscribe(data => {

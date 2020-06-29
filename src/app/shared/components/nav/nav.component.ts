@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   public user = "JohnDoe@gmail.com";
+  @Input()signIn: boolean;
 
   constructor() { }
 

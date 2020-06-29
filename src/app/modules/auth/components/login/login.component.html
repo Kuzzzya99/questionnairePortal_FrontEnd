@@ -13,7 +13,7 @@
 <!--        <small>Email is required</small>-->
 <!--      </mat-error>-->
       <input type="password" placeholder="Password" formControlName="Password">
-      <button [disabled]="!formGroup.valid" [class.disabled]="!formGroup.valid">LOG IN</button>
+      <button [disabled]="!formGroup.valid" [class.disabled]="!formGroup.valid" (click)="login()">LOG IN</button>
     </div>
     <div class="new-account">
       <div class="new-account__text">Don't have account?</div>

@@ -1,9 +1,9 @@
 export class Field {
-  private fieldId;
-  private label;
-  private type;
-  private required;
-  private isActive;
+  fieldId;
+  label;
+  type;
+  required;
+  isActive;
 
   constructor(id: string,
               label: string,

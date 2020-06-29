@@ -11,7 +11,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse nav-bar-text" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse nav-bar-text" id="navbarSupportedContent" *ngIf="signIn">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="#">Fields</a>
@@ -30,6 +30,14 @@
               <button ngbDropdownItem>Log Out</button>
             </div>
           </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse nav-bar-text" *ngIf="!signIn">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Log In</a>
         </li>
       </ul>
     </div>
