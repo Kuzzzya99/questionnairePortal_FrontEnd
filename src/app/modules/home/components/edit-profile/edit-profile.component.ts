@@ -15,7 +15,7 @@ export class EditProfileComponent implements OnInit {
   private email;
   private phoneNumber;
 
-  public formGroup:FormGroup;
+  public formGroup: FormGroup;
   public user = "JohnDoe@gmail.com";
 
   constructor(private service: EditProfileService,
@@ -29,10 +29,10 @@ export class EditProfileComponent implements OnInit {
         Validators.email,
         Validators.minLength(5)
       ]),
-      Name: new FormControl('',[
+      Name: new FormControl('', [
         Validators.pattern('^[A-Z][a-z]+')
       ]),
-      Phone: new FormControl('',[
+      Phone: new FormControl('', [
         Validators.pattern('^[\\+\\d+]')
       ])
     })
@@ -48,12 +48,12 @@ export class EditProfileComponent implements OnInit {
   //   })
   // }
 
-  editProfile(firstName= this.firstName,
+  editProfile(firstName = this.firstName,
               lastName = this.lastName,
               email = this.email,
               phoneNumber = this.phoneNumber
   ) {
-    this.mockService.editProfile(firstName,lastName,email,phoneNumber).subscribe(data => {
+    this.mockService.editProfile(firstName, lastName, email, phoneNumber).subscribe(data => {
       console.log(data);
     })
   }

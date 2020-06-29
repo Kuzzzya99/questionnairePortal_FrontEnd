@@ -11,6 +11,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {SharedModule} from "../../shared/shared.module";
+import { AddFieldComponent } from './components/add-field/add-field.component';
 
 
 
@@ -21,7 +23,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     HomePageComponent,
     QuestionnaireFormComponent,
     SuccessSubmitComponent,
-    ResponsesComponent
+    ResponsesComponent,
+    AddFieldComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +32,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     NgbModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

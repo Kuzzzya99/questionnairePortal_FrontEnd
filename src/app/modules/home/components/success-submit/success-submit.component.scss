@@ -37,9 +37,9 @@ input, label {
   height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  padding-top: 20px;
+  flex-direction: column;
   background-color: #f7f7f7;
+  padding: 0px;
 
   &__inner {
     height: 100px;
@@ -50,12 +50,14 @@ input, label {
     align-items: center;
     background-color: white;
     border-radius: 5px;
+    margin: 3px auto;
   }
 }
 
 .title {
   font-size: 23px;
-  &__small{
+
+  &__small {
     font-size: 17px;
   }
 }

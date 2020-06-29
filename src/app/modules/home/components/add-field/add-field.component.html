@@ -1,0 +1,42 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add field</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body my-modal-body">
+    <div class="form" [formGroup]="formGroup">
+      <div>Label <input class="input-class" type="text" formControlName="Name"></div>
+      <div class="select-option">Type
+        <select class="form-control form-control1702">
+          <option>Single line text</option>
+          <option>Multiline text</option>
+          <option>Radio button</option>
+          <option>Checkbox</option>
+          <option>Combobox</option>
+          <option>Date</option>
+        </select>
+      </div>
+      <div>Options <input class="input-class-option" type="email" formControlName="Username"></div>
+      <div class="checked">
+      <div class="checked__left">
+        <input type="checkbox">
+        <label>Required</label>
+      </div>
+      <div class="cheched__right">
+        <input type="checkbox">
+        <label>Is Active</label>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark my-button-white" (click)="d('Cross click')">Cancel</button>
+    <button type="button" class="title__button my-button-blue" (click)="c('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<button class="title__button" (click)="open(content)">
+  <mat-icon class="mat-add-icon">close</mat-icon>
+  <a>ADD FIELD</a></button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ResponsesService} from "../../services/responses-service";
 import {ResponsesMockService} from "../../mock-services/responses-mock-service";
 
@@ -9,8 +9,9 @@ import {ResponsesMockService} from "../../mock-services/responses-mock-service";
 })
 export class ResponsesComponent implements OnInit {
 
-  constructor(private service:ResponsesService,
-              private mockService:ResponsesMockService) { }
+  constructor(private service: ResponsesService,
+              private mockService: ResponsesMockService) {
+  }
 
   ngOnInit(): void {
   }

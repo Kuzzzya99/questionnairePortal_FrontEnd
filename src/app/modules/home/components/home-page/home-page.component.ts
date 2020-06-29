@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Field} from "../../../../model/Field";
 import {environment} from "../../../../../environments/environment";
 import {EditProfileService} from "../../services/edit-profile-service";
 import {HomePageService} from "../../services/home-page-service";
 import {HomePageMockService} from "../../mock-services/home-page-mock-service";
+import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-home-page',
@@ -12,17 +13,19 @@ import {HomePageMockService} from "../../mock-services/home-page-mock-service";
 })
 export class HomePageComponent implements OnInit {
 
-  public user= "JohnDoe@gmail.com";
+  public user = "JohnDoe@gmail.com";
   public arr = [1, 2, 3];
-  private field:Field = new Field("6", "Color", "text", true, true)
+  private field: Field = new Field("6", "Color", "text", true, true)
+
   constructor(private service: HomePageService,
-              private mockService: HomePageMockService) { }
+              private mockService: HomePageMockService,
+  ){}
 
   ngOnInit(): void {
 
   }
 
-  homePagePost(field=this.field) {
+  homePagePost(field = this.field) {
     this.mockService.homePagePost(field).subscribe(data => {
       console.log(data);
     })
@@ -34,7 +37,7 @@ export class HomePageComponent implements OnInit {
     })
   }
 
-  homePagePut(field=this.field) {
+  homePagePut(field = this.field) {
     this.mockService.homePagePut(field).subscribe(data => {
       console.log(data);
     })
@@ -69,4 +72,7 @@ export class HomePageComponent implements OnInit {
   //     console.log(data);
   //   })
   // }
+  page= 1;
+  pageSize= 10;
+
 }

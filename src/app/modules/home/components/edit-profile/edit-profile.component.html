@@ -1,55 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-  <a class="navbar-brand no-padding" href="#" style="margin-right: 670px!important;">
-    <div class="logo">
-      <div class="logo__black">LOGO</div>
-      <div class="logo__blue">TYPE</div>
-    </div>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse nav-bar-text" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Fields</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Responses</a>
-      </li>
-      <li class="nav-item">
-        <div ngbDropdown class="d-inline-block my">
-          <div class="" id="dropdownBasic1" ngbDropdownToggle>
-            {{user}}
-          </div>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Edit Profile</button>
-            <button ngbDropdownItem>Change Password</button>
-            <button ngbDropdownItem>Log Out</button>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-
 <div class="container">
-  <div class="container__inner">
-    <div class="title">
-      Edit Profile
-    </div>
-    <hr>
-    <div class="form" [formGroup]="formGroup">
-      <label>First Name<input type="text" formControlName="Name"></label>
-      <label>Last Name<input type="text" formControlName="Name"></label>
-      <label>Email<input type="email" formControlName="Username"></label>
-      <label>Phone Number<input type="text" formControlName="Phone"></label>
-      <button>SAVE</button>
+  <app-nav style="width: 100%"></app-nav>
+    <div class="container__inner">
+      <div class="title">
+        Edit Profile
+      </div>
+      <div class="form" [formGroup]="formGroup">
+        <label>First Name<input type="text" formControlName="Name"></label>
+        <label>Last Name<input type="text" formControlName="Name"></label>
+        <label>Email<input type="email" formControlName="Username"></label>
+        <label>Phone Number<input type="text" formControlName="Phone"></label>
+        <button>SAVE</button>
+      </div>
     </div>
   </div>
-</div>
 
 
 

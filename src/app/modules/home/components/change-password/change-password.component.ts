@@ -24,33 +24,33 @@ export class ChangePasswordComponent implements OnInit {
       Password: new FormControl('', [
         Validators.required,
         Validators.minLength(4)
-      ])})
+      ])
+    })
 
-      this.service.getUser().subscribe((user: any) => {
-        console.log(user);
-        this.user = user;
-      })
+    this.service.getUser().subscribe((user: any) => {
+      console.log(user);
+      this.user = user;
+    })
   }
 
-    // changePassword (password:string,
-    //                 newPassword:string,
-    //                 ){
-    //
-    //   this.service.changePassword(password, newPassword).subscribe(data => {
-    //     console.log(data);
-    //     })
-    //
-    // }
+  // changePassword (password:string,
+  //                 newPassword:string,
+  //                 ){
+  //
+  //   this.service.changePassword(password, newPassword).subscribe(data => {
+  //     console.log(data);
+  //     })
+  //
+  // }
 
-    changePassword(password = this.password,
-      newPassword = this.newPassword,
-    )
-    {
+  changePassword(password = this.password,
+                 newPassword = this.newPassword,
+  ) {
 
-      this.mockService.changePassword(password, newPassword).subscribe(data => {
-        console.log(data);
-      })
-
-    }
+    this.mockService.changePassword(password, newPassword).subscribe(data => {
+      console.log(data);
+    })
 
   }
+
+}

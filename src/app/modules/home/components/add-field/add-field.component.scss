@@ -1,0 +1,87 @@
+.title__button {
+  font-size: 15px;
+  background-color: dodgerblue;
+  color: aliceblue;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 1px dodgerblue solid;
+}
+
+.my-modal-body {
+  padding-right: 20%;
+}
+
+.mat-add-icon {
+  transform: rotate(45deg);
+  font-size: 15px;
+  color: #f7f7f7 !important;
+}
+
+.my-button-white {
+  width: 70px;
+  height: 26px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.my-button-blue {
+  width: 70px;
+  height: 26px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  background-color: dodgerblue;
+  color: aliceblue;
+  border: 1px dodgerblue solid;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: darkgrey;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  &-control1702 {
+    width: 250px;
+    height: 40px;
+    margin-bottom: 7px;
+  }
+}
+
+.select-option {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.input-class {
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  border: darkgrey 1px solid;
+  color: darkgrey;
+  margin-bottom: 7px;
+  padding-left: 33%;
+  &-option{
+    width: 250px;
+    height: 160px;
+    margin-bottom: 7px;
+  }
+}
+
+.checked{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 285px;
+
+}

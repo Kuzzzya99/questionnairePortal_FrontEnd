@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuestionnaireFormService} from "../../services/questionnaire-form-service";
 import {environment} from "../../../../../environments/environment";
 import {Answer} from "../../../../model/Answer";
@@ -11,10 +11,11 @@ import {QuestionnaireFormMockService} from "../../mock-services/questionnaire-fo
 })
 export class QuestionnaireFormComponent implements OnInit {
 
-  private answer:Answer[] = [new Answer(1,"Politykin")]
+  private answer: Answer[] = [new Answer(1, "Politykin")]
 
-  constructor(private service:QuestionnaireFormService,
-              private mockService:QuestionnaireFormMockService) { }
+  constructor(private service: QuestionnaireFormService,
+              private mockService: QuestionnaireFormMockService) {
+  }
 
   ngOnInit(): void {
   }
@@ -32,15 +33,15 @@ export class QuestionnaireFormComponent implements OnInit {
   // }
 
   getFields() {
-      this.mockService.getFields().subscribe(data => {
-        console.log(data);
-      })
-    }
+    this.mockService.getFields().subscribe(data => {
+      console.log(data);
+    })
+  }
 
-    postAnswer(answer=this.answer) {
-      this.mockService.postAnswer(answer).subscribe(data => {
-        console.log(data);
-      })
-    }
+  postAnswer(answer = this.answer) {
+    this.mockService.postAnswer(answer).subscribe(data => {
+      console.log(data);
+    })
+  }
 
 }

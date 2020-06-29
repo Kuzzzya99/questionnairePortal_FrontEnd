@@ -4,7 +4,6 @@
   justify-content: center;
   align-items: center;
   font-size: 25px;
-  margin-left: 100px;
 
   &__black {
     color: black;
@@ -45,21 +44,27 @@ hr {
   height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  padding-top: 20px;
+  align-items: center;
+  flex-direction: column;
   background-color: #f7f7f7;
+  padding: 0px;
 
   &__inner {
-    height: 420px;
     width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
-    padding-left: 40px;
-    padding-right: 40px;
     border-radius: 5px;
+    margin: 10px auto;
+    padding: 10px;
+  }
+
+  & nav {
+    width: 80%!important;
+    border-bottom: 2px solid darkgrey;
+    margin-bottom: 10px;
   }
 }
 

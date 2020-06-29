@@ -1,50 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-  <a class="navbar-brand no-padding" href="#" style="margin-right: 670px!important;">
-    <div class="logo">
-      <div class="logo__black">LOGO</div>
-      <div class="logo__blue">TYPE</div>
-    </div>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse nav-bar-text" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Fields</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Responses</a>
-      </li>
-      <li class="nav-item">
-        <div ngbDropdown class="d-inline-block my">
-          <div class="" id="dropdownBasic1" ngbDropdownToggle>
-            {{user}}
-          </div>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Edit Profile</button>
-            <button ngbDropdownItem>Change Password</button>
-            <button ngbDropdownItem>Log Out</button>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-
 <div class="container">
+  <app-nav style="width: 100%"></app-nav>
   <div class="container__inner">
     <div class="title">
       <div class="title__text">Fields</div>
-      <div>
-        <button class="title__button">
-          <mat-icon class="mat-add-icon">close</mat-icon>
-          <a>ADD FIELD</a></button>
+      <div class="title__button-container">
+       <app-add-field></app-add-field>
       </div>
+
+
     </div>
-    <hr>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -72,10 +36,13 @@
       </tbody>
     </table>
     <div class="mat-paginator">
-      <mat-paginator [length]="100"
-                     [pageSize]="20"
-                     [pageSizeOptions]="[5, 10, 25, 100]">
-      </mat-paginator>
+      <ngb-pagination [(page)]="page"
+                      [pageSize]="pageSize"
+                      [collectionSize]="arr.length">
+        <ng-template ngbPaginationEllipsis>...</ng-template>
+        <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+      </ngb-pagination>
+
     </div>
   </div>
 </div>

@@ -1,0 +1,36 @@
+.nav-bar-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  z-index: 1;
+  border-bottom: 2px solid darkgrey;
+}
+
+.my-nav {
+  width: 80%;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+
+  &__black {
+    color: black;
+    font-weight: bold;
+  }
+
+  &__blue {
+    color: dodgerblue;
+  }
+}
+
+
+.nav-bar-text {
+  font-size: 15px;
+  font-weight: bold;
+  color: dimgrey;
+}
