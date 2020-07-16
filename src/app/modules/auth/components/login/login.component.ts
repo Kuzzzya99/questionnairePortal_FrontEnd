@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../services/login-service";
-import {LoginMockService} from "../../mock-services/login-mock-service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -10,8 +9,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private email = "qwerty@gmail.com"
-  private password = "qwertyuiop"
   public formGroup: FormGroup;
 
   constructor(private loginService: LoginService,
@@ -28,22 +25,17 @@ export class LoginComponent implements OnInit {
       Password: new FormControl('', [
         Validators.required,
         Validators.minLength(4)
-      ])
+      ]),
     })
   }
 
   login() {
 
-    this.loginService.login(this.formGroup.value.Username, this.formGroup.value.Password).subscribe(data => {
-      console.log(data);
-    })
-
-    // login(email = this.email, password = this.password) {
-    //
-    //   this.mockService.login(email, password).subscribe(data => {
-    //     console.log(data);
-    //   })
-    //
-    // }
+    this.loginService.login(this.formGroup.value.Username, this.formGroup.value.Password).subscribe(
+      data =>
+        console.log(data),
+      error =>
+        alert("Wrong user or password"),
+      () => this.router.navigate(['../home']))
   }
 }

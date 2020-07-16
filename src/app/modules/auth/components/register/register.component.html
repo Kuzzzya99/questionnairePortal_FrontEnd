@@ -8,13 +8,13 @@
       Sign Up
     </div>
     <div class="form" [formGroup]="formGroup">
-      <input type="text" placeholder="Email" formControlName="Username">
+      <input type="text" placeholder="Email" formControlName="Login">
       <input type="password" placeholder="Password" formControlName="Password">
-      <input type="password" placeholder="Confirm Password" formControlName="Password">
+      <input type="password" placeholder="Confirm Password" formControlName="ConfirmPassword">
       <input type="text" placeholder="First Name" formControlName="Name">
-      <input type="text" placeholder="Last Name" formControlName="Name">
-      <input type="text" placeholder="Phone Number" formControlName="Password">
-      <button [disabled]="!formGroup.valid" [class.disabled]="!formGroup.valid">SIGN UP</button>
+      <input type="text" placeholder="Last Name" formControlName="Surname">
+      <input type="text" placeholder="Phone Number" formControlName="Phone">
+      <button [disabled]="!formGroup.valid" [class.disabled]="!formGroup.valid" (click)="signUp()">SIGN UP</button>
     </div>
     <div class="have-account">
       <div class="have-account__text">Already have account?</div>

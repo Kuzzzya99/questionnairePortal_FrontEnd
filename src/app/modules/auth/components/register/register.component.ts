@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      Username: new FormControl('', [
+      Login: new FormControl('', [
         Validators.required,
         Validators.email,
         Validators.minLength(5)
@@ -30,31 +30,41 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(4)
       ]),
-      Name: new FormControl('',[
+      ConfirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      Name: new FormControl('', [
+        Validators.required,
         Validators.pattern('^[A-Z][a-z]+')
       ]),
-      Phone: new FormControl('',[
-        Validators.pattern('^[\\+\\d+]')
+      Surname: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[A-Z][a-z]+')
+      ]),
+      Phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]+')
       ])
     })
   }
 
-  signUp(email: string,
-         password: string,
-         firstName: string,
-         lastName: string,
-         phoneNumber: string) {
+  signUp() {
+    if (this.formGroup.value.Password !== this.formGroup.value.ConfirmPassword) {
+      alert("Passwords not match");
+    }
 
-    // this.service.signUp(new User(email, password, firstName,lastName,phoneNumber))
-    //   .subscribe(data => {
-    //     console.log(data);
-    //   })
-
-    this.mockService.signUp(new User(email, password, firstName, lastName, phoneNumber))
-      .subscribe(data => {
-        console.log(data);
-      })
-
+    this.service.signUp(new User(
+      this.formGroup.value.Login,
+      this.formGroup.value.Password,
+      this.formGroup.value.Name,
+      this.formGroup.value.SurName,
+      this.formGroup.value.Phone))
+      .subscribe(data =>
+          console.log(data),
+        error => {
+          alert("User with this email already exists")
+        },
+        () => this.router.navigate(['../auth']))
   }
-
 }
