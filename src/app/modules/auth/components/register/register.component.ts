@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
       this.formGroup.value.Login,
       this.formGroup.value.Password,
       this.formGroup.value.Name,
-      this.formGroup.value.SurName,
+      this.formGroup.value.Surname,
       this.formGroup.value.Phone))
       .subscribe(data =>
           console.log(data),

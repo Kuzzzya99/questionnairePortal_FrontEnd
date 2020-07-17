@@ -31,9 +31,10 @@ export class LoginComponent implements OnInit {
 
   login() {
 
+    let token;
     this.loginService.login(this.formGroup.value.Username, this.formGroup.value.Password).subscribe(
       data =>
-        console.log(data),
+        token = data,
       error =>
         alert("Wrong user or password"),
       () => this.router.navigate(['../home']))
