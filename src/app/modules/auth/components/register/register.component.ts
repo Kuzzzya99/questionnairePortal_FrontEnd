@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit {
   public formGroup: FormGroup;
 
   constructor(private service: RegisterService,
-              private mockService: RegisterMockService,
               public router: Router) {
   }
 

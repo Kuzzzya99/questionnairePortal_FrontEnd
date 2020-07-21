@@ -5,11 +5,11 @@
         Edit Profile
       </div>
       <div class="form" [formGroup]="formGroup">
-        <label>First Name<input type="text" formControlName="Name"></label>
-        <label>Last Name<input type="text" formControlName="Name"></label>
+        <label>First Name<input type="text" formControlName="FirstName"></label>
+        <label>Last Name<input type="text" formControlName="LastName"></label>
         <label>Email<input type="email" formControlName="Username"></label>
         <label>Phone Number<input type="text" formControlName="Phone"></label>
-        <button>SAVE</button>
+        <button (click)="editProfile()">SAVE</button>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NavService} from "../../services/nav-service";
+import {NavService} from '../../services/nav-service';
 
 @Component({
   selector: 'app-nav',
@@ -15,12 +15,10 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.getUsername();
   }
 
-  getUsername(){
-    this.service.getUsername().subscribe(
-      data =>
-        this.user = data)
+  getUsername() {
+    this.service.getUsername().subscribe((data: any) => this.user = data.firstName);
   }
 }

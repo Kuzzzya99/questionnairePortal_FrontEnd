@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       data =>
         token = data,
       error =>
-        alert("Wrong user or password"),
-      () => this.router.navigate(['../home']))
+        alert('Wrong user or password'),
+      () => this.router.navigate(['../home']));
   }
 }

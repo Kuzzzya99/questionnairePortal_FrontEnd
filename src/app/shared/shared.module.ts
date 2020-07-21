@@ -4,6 +4,7 @@ import { NavComponent } from './components/nav/nav.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -12,10 +13,11 @@ import {MatIconModule} from "@angular/material/icon";
   exports: [
     NavComponent
   ],
-  imports: [
-    CommonModule,
-    NgbModule,
-    MatIconModule,
-  ]
+    imports: [
+        CommonModule,
+        NgbModule,
+        MatIconModule,
+        RouterModule,
+    ]
 })
 export class SharedModule { }

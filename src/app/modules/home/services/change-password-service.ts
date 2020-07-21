@@ -1,24 +1,20 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../../environments/environment";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
-  providedIn:"root"
+  providedIn: 'root'
 })
 
-export class ChangePasswordService{
+export class ChangePasswordService {
 
   constructor(private http: HttpClient) {
   }
 
-  changePassword(password:string, newPassword:string){
-    return this.http.post(environment.host + "/change_password", {
+  changePassword(password: string, newPassword: string) {
+    return this.http.post(environment.host + '/change_password', {
       password,
       newPassword
-    })
-  }
-
-  getUser(){
-    return this.http.get(environment.host + "/get_user")
+    });
   }
 }

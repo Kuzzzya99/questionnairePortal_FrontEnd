@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ChangePasswordService} from "../../services/change-password-service";
-import {ChangePasswordMockService} from "../../mock-services/change-password-mock-service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ChangePasswordService} from '../../services/change-password-service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -9,48 +9,31 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
-
-  private password = "12345678";
-  private newPassword = "87654321";
-  public user = "JohnDoe@gmail.com";
   public formGroup: FormGroup;
 
   constructor(private service: ChangePasswordService,
-              private mockService: ChangePasswordMockService) {
+              public router: Router) {
   }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       Password: new FormControl('', [
         Validators.required,
+        Validators.minLength(4)]),
+      NewPassword: new FormControl('', [
+        Validators.required,
         Validators.minLength(4)
       ])
-    })
-
-    this.service.getUser().subscribe((user: any) => {
-      console.log(user);
-      this.user = user;
-    })
+    });
   }
 
-  // changePassword (password:string,
-  //                 newPassword:string,
-  //                 ){
-  //
-  //   this.service.changePassword(password, newPassword).subscribe(data => {
-  //     console.log(data);
-  //     })
-  //
-  // }
-
-  changePassword(password = this.password,
-                 newPassword = this.newPassword,
-  ) {
-
-    this.mockService.changePassword(password, newPassword).subscribe(data => {
-      console.log(data);
-    })
-
+  changePassword() {
+    this.service.changePassword(this.formGroup.value.Password,
+      this.formGroup.value.NewPassword) .subscribe(data =>
+        console.log(data),
+      error => {
+        alert("Wrong password")
+      },
+      () => this.router.navigate(['../auth']))
   }
-
 }

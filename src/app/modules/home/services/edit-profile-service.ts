@@ -12,15 +12,19 @@ export class EditProfileService{
 
   editProfile(firstName:string,
               lastName:string,
-              email:string,
+              login:string,
               phoneNumber:string){
     return this.http.post(environment.host + "/edit_profile", {
       firstName,
       lastName,
-      email,
+      login,
       phoneNumber
       }
     )
+  }
+
+  getUserProfileInfo() {
+    return this.http.get(environment.host + '/edit_profile');
   }
 
 

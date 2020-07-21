@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EditProfileService} from "../../services/edit-profile-service";
 import {EditProfileMockService} from "../../mock-services/edit-profile-mock-service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,17 +10,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-
-  private firstName;
-  private lastName;
-  private email;
-  private phoneNumber;
-
   public formGroup: FormGroup;
-  public user = "JohnDoe@gmail.com";
 
   constructor(private service: EditProfileService,
-              private mockService: EditProfileMockService) {
+              public router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,7 +23,10 @@ export class EditProfileComponent implements OnInit {
         Validators.email,
         Validators.minLength(5)
       ]),
-      Name: new FormControl('', [
+      FirstName: new FormControl('', [
+        Validators.pattern('^[A-Z][a-z]+')
+      ]),
+      LastName: new FormControl('', [
         Validators.pattern('^[A-Z][a-z]+')
       ]),
       Phone: new FormControl('', [
@@ -38,24 +35,17 @@ export class EditProfileComponent implements OnInit {
     })
   }
 
-  // editProfile(firstName: string,
-  //             lastName: string,
-  //             email: string,
-  //             phoneNumber: string
-  // ) {
-  //   this.service.editProfile(firstName,lastName,email,phoneNumber).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-
-  editProfile(firstName = this.firstName,
-              lastName = this.lastName,
-              email = this.email,
-              phoneNumber = this.phoneNumber
-  ) {
-    this.mockService.editProfile(firstName, lastName, email, phoneNumber).subscribe(data => {
-      console.log(data);
-    })
+  editProfile() {
+    this.service.editProfile(this.formGroup.value.FirstName,
+      this.formGroup.value.LastName,
+      this.formGroup.value.Username,
+      this.formGroup.value.Phone).subscribe(data =>
+        console.log(data),
+      error => {
+        alert("Invalid data")
+      },
+      () => this.router.navigate(['../home/homePage']))
   }
+
 
 }
