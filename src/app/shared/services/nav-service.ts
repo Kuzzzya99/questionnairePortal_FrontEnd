@@ -12,6 +12,6 @@ export class NavService {
   }
 
   getUsername() {
-    return this.http.get(environment.host + '/user');
+    return this.http.get(environment.host + '/user/' + localStorage.getItem("userId"));
   }
 }

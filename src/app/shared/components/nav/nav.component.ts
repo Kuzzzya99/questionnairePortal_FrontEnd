@@ -21,4 +21,5 @@ export class NavComponent implements OnInit {
   getUsername() {
     this.service.getUsername().subscribe((data: any) => this.user = data.firstName);
   }
+
 }

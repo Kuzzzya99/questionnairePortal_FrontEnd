@@ -5,10 +5,10 @@
         Edit Profile
       </div>
       <div class="form" [formGroup]="formGroup">
-        <label>First Name<input type="text" formControlName="FirstName"></label>
-        <label>Last Name<input type="text" formControlName="LastName"></label>
-        <label>Email<input type="email" formControlName="Username"></label>
-        <label>Phone Number<input type="text" formControlName="Phone"></label>
+        <label>First Name<input type="text" formControlName="FirstName" value={{firstName}}></label>
+        <label>Last Name<input type="text" formControlName="LastName"  value={{lastName}}></label>
+        <label>Email<input type="email" formControlName="Username" value={{login}}></label>
+        <label>Phone Number<input type="text" formControlName="Phone" value={{phone}}></label>
         <button (click)="editProfile()">SAVE</button>
       </div>
     </div>

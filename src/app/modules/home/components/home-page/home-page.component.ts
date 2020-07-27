@@ -13,7 +13,6 @@ import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 })
 export class HomePageComponent implements OnInit {
 
-  public user = "JohnDoe@gmail.com";
   public arr = [1, 2, 3];
   private field: Field = new Field("1", "Color", "single_line_text", true, true);
 

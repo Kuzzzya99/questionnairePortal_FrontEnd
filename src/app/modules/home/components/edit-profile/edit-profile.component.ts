@@ -11,6 +11,11 @@ import {Router} from "@angular/router";
 })
 export class EditProfileComponent implements OnInit {
   public formGroup: FormGroup;
+  public user;
+  public login;
+  public firstName;
+  public lastName;
+  public phone;
 
   constructor(private service: EditProfileService,
               public router: Router) {
@@ -33,6 +38,16 @@ export class EditProfileComponent implements OnInit {
         Validators.pattern('^[\\+\\d+]')
       ])
     })
+    this.getUserProfileInfo();
+  }
+
+  getUserProfileInfo() {
+    this.service.getUserProfileInfo().subscribe(
+      (data: any) => (
+          this.login = data.login,
+          this.firstName = data.firstName,
+          this.lastName = data.lastName,
+          this.phone = data.phoneNumber))
   }
 
   editProfile() {
