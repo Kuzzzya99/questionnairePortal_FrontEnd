@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
-import {HomePageService} from "../../services/home-page-service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionnaireFormService} from "../../services/questionnaire-form-service";
-import {environment} from "../../../../../environments/environment";
 import {Answer} from "../../../../model/Answer";
 import {Field} from "../../../../model/Field";
 import {FieldOption} from "../../../../model/FieldOption";

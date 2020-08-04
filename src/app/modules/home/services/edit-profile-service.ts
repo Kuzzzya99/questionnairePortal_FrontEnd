@@ -1,25 +1,25 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {User} from "../../../model/User";
 
 @Injectable({
-  providedIn:"root"
+  providedIn: "root"
 })
 
-export class EditProfileService{
+export class EditProfileService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  editProfile(firstName:string,
-              lastName:string,
-              login:string,
-              phoneNumber:string){
+  editProfile(firstName: string,
+              lastName: string,
+              login: string,
+              phoneNumber: string) {
     return this.http.post(environment.host + "/edit_profile", {
-      firstName,
-      lastName,
-      login,
-      phoneNumber
+        firstName,
+        lastName,
+        login,
+        phoneNumber
       }
     )
   }

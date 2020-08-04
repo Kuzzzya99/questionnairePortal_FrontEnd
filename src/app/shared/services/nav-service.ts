@@ -14,6 +14,6 @@ export class NavService {
   }
 
   getUsername() {
-    return this.http.get(environment.host + '/user/' +  this.cookieService.get('userId'));
+    return this.http.get(environment.host + '/user/' + this.cookieService.get('userId'));
   }
 }

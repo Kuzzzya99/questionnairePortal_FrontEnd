@@ -1,18 +1,18 @@
 <div class="container">
   <app-nav [signIn]=true style="width: 100%"></app-nav>
-    <div class="container__inner">
-      <div class="title">
-        Edit Profile
-      </div>
-      <div class="form" [formGroup]="formGroup">
-        <label>First Name<input type="text" formControlName="FirstName" value={{firstName}}></label>
-        <label>Last Name<input type="text" formControlName="LastName"  value={{lastName}}></label>
-        <label>Email<input type="email" formControlName="Username" value={{login}}></label>
-        <label>Phone Number<input type="text" formControlName="Phone" value={{phone}}></label>
-        <button (click)="editProfile()">SAVE</button>
-      </div>
+  <div class="container__inner">
+    <div class="title">
+      Edit Profile
+    </div>
+    <div class="form" [formGroup]="formGroup">
+      <label>First Name<input type="text" formControlName="FirstName" value={{firstName}}></label>
+      <label>Last Name<input type="text" formControlName="LastName" value={{lastName}}></label>
+      <label>Email<input type="email" formControlName="Username" value={{login}}></label>
+      <label>Phone Number<input type="text" formControlName="Phone" value={{phone}}></label>
+      <button (click)="editProfile()">SAVE</button>
     </div>
   </div>
+</div>
 
 
 

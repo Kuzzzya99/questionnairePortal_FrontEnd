@@ -4,7 +4,7 @@ export class Answer {
 
   constructor(fieldId: number,
               value: string,
-              ) {
+  ) {
     this.fieldId = fieldId;
     this.value = value;
   }

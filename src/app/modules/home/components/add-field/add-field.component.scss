@@ -70,14 +70,15 @@
   color: darkgrey;
   margin-bottom: 7px;
   padding-left: 33%;
-  &-option{
+
+  &-option {
     width: 250px;
     height: 160px;
     margin-bottom: 7px;
   }
 }
 
-.checked{
+.checked {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

@@ -41,8 +41,7 @@ export class RegisterComponent implements OnInit {
         Validators.pattern('^[A-Z][a-z]+')
       ]),
       Phone: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-9]+')
+        Validators.required
       ])
     })
   }

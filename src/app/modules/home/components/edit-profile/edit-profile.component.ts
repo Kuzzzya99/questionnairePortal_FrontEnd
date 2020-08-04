@@ -43,7 +43,7 @@ export class EditProfileComponent implements OnInit {
   getUserProfileInfo() {
     this.service.getUserProfileInfo().subscribe(
       (data: any) => (
-          this.login = data.login,
+        this.login = data.login,
           this.firstName = data.firstName,
           this.lastName = data.lastName,
           this.phone = data.phoneNumber))
