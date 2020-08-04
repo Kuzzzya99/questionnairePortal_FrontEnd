@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {EditProfileService} from "../../services/edit-profile-service";
-import {EditProfileMockService} from "../../mock-services/edit-profile-mock-service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 

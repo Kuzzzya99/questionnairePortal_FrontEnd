@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {QuestionnaireFormService} from "../../services/questionnaire-form-service";
 import {environment} from "../../../../../environments/environment";
 import {Answer} from "../../../../model/Answer";
-import {QuestionnaireFormMockService} from "../../mock-services/questionnaire-form-mock-service";
 import {Field} from "../../../../model/Field";
 import {FieldOption} from "../../../../model/FieldOption";
 
@@ -17,8 +16,7 @@ export class QuestionnaireFormComponent implements OnInit {
   public numOfOptions: FieldOption[] = [];
   private answer: Answer[] = [new Answer(1, "Politykin")]
 
-  constructor(private service: QuestionnaireFormService,
-              private mockService: QuestionnaireFormMockService) {
+  constructor(private service: QuestionnaireFormService) {
   }
 
   ngOnInit(): void {
@@ -37,16 +35,16 @@ export class QuestionnaireFormComponent implements OnInit {
   //   })
   // }
 
-  getFields() {
-    this.mockService.getFields().subscribe(data => {
-      console.log(data);
-    })
-  }
-
-  postAnswer(answer = this.answer) {
-    this.mockService.postAnswer(answer).subscribe(data => {
-      console.log(data);
-    })
-  }
+  // getFields() {
+  //   this.mockService.getFields().subscribe(data => {
+  //     console.log(data);
+  //   })
+  // }
+  //
+  // postAnswer(answer = this.answer) {
+  //   this.mockService.postAnswer(answer).subscribe(data => {
+  //     console.log(data);
+  //   })
+  // }
 
 }

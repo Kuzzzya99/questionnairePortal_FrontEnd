@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RegisterService} from "../../services/register-service";
 import {User} from "../../../../model/User";
-import {RegisterMockService} from "../../mock-services/register-mock-service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 

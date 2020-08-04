@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {CookieService} from "ngx-cookie-service";
+import {TokenInterceptorService} from "./interceptor/token-interceptor-service";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {CookieService} from "ngx-cookie-service";
     BrowserAnimationsModule,
     NgbModule
   ],
-  providers: [CookieService],
+  providers: [CookieService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
