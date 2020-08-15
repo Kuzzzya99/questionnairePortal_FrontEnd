@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.formGroup.value.Username, this.formGroup.value.Password).subscribe(
       (data: any) => (
         this.cookieService.set('userId', data.id),
-          this.cookieService.set('token', data.token)
+          this.cookieService.set('token', data.token),
+          this.cookieService.set('tokenId', data.tokenId)
       ),
       error =>
         alert('Wrong user or password'),

@@ -27,7 +27,7 @@
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem routerLink="../editProfile">Edit Profile</button>
               <button ngbDropdownItem routerLink="../changePassword">Change Password</button>
-              <button ngbDropdownItem routerLink="../../login">Log Out</button>
+              <button ngbDropdownItem (click)="logOut()">Log Out</button>
             </div>
           </div>
         </li>
