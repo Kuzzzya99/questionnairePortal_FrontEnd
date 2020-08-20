@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AddFieldService} from "../../services/add-field-service";
+import {Router} from "@angular/router";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-add-field',
@@ -28,12 +31,30 @@ export class AddFieldComponent implements OnInit {
     })
   }
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(config: NgbModalConfig,
+              private modalService: NgbModal,
+              private service: AddFieldService,
+              private cookieService: CookieService,
+              public router: Router) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
   open(content) {
     this.modalService.open(content);
+  }
+
+  addField() {
+    this.service.addField('label',
+      1,
+      'adsd',
+      true,
+      true,
+      this.cookieService.get('userId') ).subscribe(data =>
+        console.log(data),
+      error => {
+        alert("Invalid data")
+      },
+      () => this.router.navigate(['../home/homePage']))
   }
 }

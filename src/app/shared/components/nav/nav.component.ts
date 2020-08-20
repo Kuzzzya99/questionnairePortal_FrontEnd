@@ -27,7 +27,6 @@ export class NavComponent implements OnInit {
   }
 
   logOut(){
-    alert("Logout");
     this.service.logOut().subscribe((data: any) => this.cookieService.deleteAll(),
       error => {
         alert("Can't logout")
