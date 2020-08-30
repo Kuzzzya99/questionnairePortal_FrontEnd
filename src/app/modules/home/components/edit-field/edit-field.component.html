@@ -35,9 +35,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark my-button-white" (click)="d('Cross click')">Cancel</button>
-    <button type="button" class="title__button my-button-blue"
-            [disabled]="formGroup.invalid"
-            (click)="addField()">Save</button>
+    <button type="button" class="title__button my-button-blue" [disabled]="formGroup.invalid" (click)="editField()">Save</button>
   </div>
 </ng-template>
 
@@ -45,4 +43,4 @@
   <mat-icon class="mat-add-icon">close</mat-icon>
   <a>ADD FIELD</a></button>
 
-<mat-icon (click)="open(content)" *ngIf="!buttonAdd" >edit</mat-icon>
+<mat-icon (click)="open(content)" *ngIf="!buttonAdd">edit</mat-icon>

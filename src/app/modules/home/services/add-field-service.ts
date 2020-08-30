@@ -7,7 +7,7 @@ import {CookieService} from "ngx-cookie-service";
   providedIn: 'root'
 })
 
-export class AddFieldService{
+export class AddFieldService {
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
@@ -15,20 +15,18 @@ export class AddFieldService{
 
   addField(label: string,
            type: number,
-           options: string,
+           options: string[],
            required: boolean,
            active: boolean,
            userId: string) {
     return this.http.post(environment.host + '/fields' + '/add', {
-      label,
-      type,
-      options,
-      required,
-      active,
-      userId
+        label,
+        type,
+        options,
+        required,
+        active,
+        userId
       }
     )
   }
-
-
 }

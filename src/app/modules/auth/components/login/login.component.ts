@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         Validators.minLength(4)
       ]),
     })
+    this.cookieService.deleteAll();
   }
 
   login() {

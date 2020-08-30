@@ -1,6 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Field} from "../../../../model/Field";
 import {HomePageService} from "../../services/home-page-service";
+import {FieldType} from "../../../../model/FieldType";
+import {CookieService} from "ngx-cookie-service";
+import {environment} from "../../../../../environments/environment";
+import {EditFieldComponent} from "../edit-field/edit-field.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -9,67 +14,66 @@ import {HomePageService} from "../../services/home-page-service";
 })
 export class HomePageComponent implements OnInit {
 
-  public arr = [1, 2, 3];
-  private field: Field = new Field("1", "Color", "single_line_text", true, true);
-
+  arr: Field[] = [];
   page = 1;
   pageSize = 10;
+  fieldType: any;
 
-  constructor(private service: HomePageService
+
+  constructor(private service: HomePageService,
+              private cookieService: CookieService,
+              private router: Router
   ) {
   }
 
   ngOnInit(): void {
-
+    this.findAllFields();
   }
 
-  // homePagePost(field = this.field) {
-  //   this.mockService.homePagePost(field).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePageGet() {
-  //   this.mockService.homePageGet().subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePagePut(field = this.field) {
-  //   this.mockService.homePagePut(field).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePageDelete(id) {
-  //   this.mockService.homePageDelete(id).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
+  findAllFields() {
+    this.service.findAllFields().subscribe((data: Field[]) => {
+      this.arr = data;
+    })
+  }
 
-  // homePagePost(field: Field) {
-  //   this.service.homePagePost(field).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePageGet() {
-  //   this.service.homePageGet().subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePagePut(field: Field) {
-  //   this.service.homePagePut(field).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePageDelete(id) {
-  //   this.service.homePageDelete(id).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
+
+  findTypeIndex(a) {
+    let typeIndex;
+    switch (a) {
+      case 1:
+        typeIndex = 'Single line text';
+        break;
+      case 2:
+        typeIndex = 'Multiline text';
+        break;
+      case 3:
+        typeIndex = 'Radio button';
+        break;
+      case 4:
+        typeIndex = 'Checkbox';
+        break;
+      case 5:
+        typeIndex = 'Combobox';
+        break;
+      case 6:
+        typeIndex = 'Date';
+        break;
+    }
+    return typeIndex;
+  }
+
+  deleteField(fieldId) {
+    this.service.deleteField(fieldId).subscribe(data => alert('You have successfully delete field'),
+      error => {
+        alert("Can't delete field")
+      },
+      () =>  this.findAllFields())
+  }
+
+
+  setFieldId(fieldId) {
+    this.cookieService.set('fieldId', fieldId);
+  }
 
 
 }

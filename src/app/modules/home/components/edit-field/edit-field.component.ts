@@ -1,20 +1,22 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AddFieldService} from "../../services/add-field-service";
-import {Router} from "@angular/router";
-import {CookieService} from "ngx-cookie-service";
 import {FieldType} from "../../../../model/FieldType";
+import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
+import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
+import {EditFieldService} from "../../services/edit-field-service";
+import {Field} from "../../../../model/Field";
 
 @Component({
-  selector: 'app-add-field',
-  templateUrl: './add-field.component.html',
-  styleUrls: ['./add-field.component.scss']
+  selector: 'app-edit-field',
+  templateUrl: './edit-field.component.html',
+  styleUrls: ['./edit-field.component.scss']
 })
-export class AddFieldComponent implements OnInit {
+export class EditFieldComponent implements OnInit {
   formGroup: FormGroup;
   @Input() text: string;
   @Input() buttonAdd: boolean;
+  @Input() field: Field;
   isRequired = false;
   isActive = false;
 
@@ -36,18 +38,20 @@ export class AddFieldComponent implements OnInit {
       Option: new FormControl('', [
         // Validators.pattern('(^[A-Z][a-z]+)+\,(^[A-Z][a-z]+)+')
       ]),
-      Label: new FormControl('', [
+      Label: new FormControl(this.field.label, [
         Validators.pattern('^[A-Z][a-z]+')
       ]),
-      Type: new FormControl('', [
+      Type: new FormControl(this.field.type, [
         Validators.required
       ])
-    })
+    });
+    this.isRequired = false;
+    this.isActive = false;
   }
 
   constructor(config: NgbModalConfig,
               private modalService: NgbModal,
-              private service: AddFieldService,
+              private service: EditFieldService,
               private cookieService: CookieService,
               public router: Router) {
     config.backdrop = 'static';
@@ -68,18 +72,19 @@ export class AddFieldComponent implements OnInit {
     return typeIndex;
   }
 
-  addField() {
-    this.service.addField(this.formGroup.value.Label,
+  editField() {
+    this.service.editField(this.formGroup.value.Label,
       this.findTypeIndex(),
       this.parseOption(),
       this.isRequired,
       this.isActive,
       this.cookieService.get('userId')).subscribe(data =>
-        data,
+        console.log(data),
       error => {
         alert("Invalid data")
       },
       () => this.router.navigate(['../home/homePage']))
+    console.log(this.formGroup.value);
   }
 
   required() {
