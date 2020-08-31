@@ -4,28 +4,28 @@
     <div class="title">
     </div>
     <div class="form">
-      <div *ngFor="let item of numOfFields">
+      <div *ngFor="let item of arr">
         <div>
           {{item.label}}
         </div>
-        <div *ngIf="item.type === 'single_line_text'">
+        <div *ngIf="item.type === 1" class="text">
           <input type="text">
         </div>
-        <div *ngIf="item.type === 'multiline_line_text'">
+        <div *ngIf="item.type === 2" class="text">
           <textarea rows="5"></textarea>
         </div>
-        <div *ngIf="item.type === 'radio_button'">
-          <label *ngFor="let n of numOfOptions"><input type="radio">{{n.value}}</label>
+        <div class= "one-answer"*ngIf="item.type === 3">
+          <label *ngFor="let n of item.options"><input type="radio">{{n}}</label>
         </div>
-        <div *ngIf="item.type === 'checkbox'">
-          <label *ngFor="let n of numOfOptions"><input type="checkbox">{{n.value}}</label>
+        <div *ngIf="item.type === 4">
+          <label *ngFor="let n of item.options"><input type="checkbox">{{n}}</label>
         </div>
-        <div *ngIf="item.type === 'combobox'">
+        <div *ngIf="item.type === 5">
           <select class="form-control">
-            <option *ngFor="let n of numOfOptions">{{n.value}}</option>
+            <option *ngFor="let n of item.options">{{n}}</option>
           </select>
         </div>
-        <div *ngIf="item.type === 'date'">
+        <div *ngIf="item.type === 6">
           <div class="input-group date" data-provide="date-picker">
             <input type="text" class="form-control">
             <div class="input-group-addon">

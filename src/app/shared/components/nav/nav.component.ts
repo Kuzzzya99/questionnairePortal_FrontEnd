@@ -19,7 +19,9 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.signIn === true){
     this.getUsername();
+    }
   }
 
   getUsername() {

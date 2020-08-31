@@ -3,6 +3,7 @@ import {QuestionnaireFormService} from "../../services/questionnaire-form-servic
 import {Answer} from "../../../../model/Answer";
 import {Field} from "../../../../model/Field";
 import {FieldOption} from "../../../../model/FieldOption";
+import {DataForForm} from "../../../../model/DataForForm";
 
 @Component({
   selector: 'app-questionnaire-form',
@@ -11,37 +12,27 @@ import {FieldOption} from "../../../../model/FieldOption";
 })
 export class QuestionnaireFormComponent implements OnInit {
 
-  public numOfFields: Field[] = [];
-  public numOfOptions: FieldOption[] = [];
+  arr: DataForForm[] = [];
+  public numOfOptions: string[] = [];
   private answer: Answer[] = [new Answer(1, "Politykin")]
 
   constructor(private service: QuestionnaireFormService) {
   }
 
   ngOnInit(): void {
-
+    this.getFields();
   }
 
-  // getFields() {
-  //   this.service.getFields().subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
+  getFields() {
+    this.service.getFields().subscribe((data:DataForForm[]) => {
+      this.arr = data;
+
+      })
+  }
+
   //
   // postAnswer(answer: Answer[]) {
   //   this.service.postAnswer(answer).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-
-  // getFields() {
-  //   this.mockService.getFields().subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // postAnswer(answer = this.answer) {
-  //   this.mockService.postAnswer(answer).subscribe(data => {
   //     console.log(data);
   //   })
   // }

@@ -8,7 +8,6 @@ import {ResponsesService} from "../../services/responses-service";
 })
 export class ResponsesComponent implements OnInit {
 
-  public user = "JohnDoe@gmail.com";
   public numOfFields: number[] = [1, 2, 3, 4];
   public numOfResponses: number[] = [1, 2, 3, 4, 5, 6];
   page = 1;
