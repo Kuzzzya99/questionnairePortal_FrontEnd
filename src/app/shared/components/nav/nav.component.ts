@@ -25,7 +25,10 @@ export class NavComponent implements OnInit {
   }
 
   getUsername() {
-    this.service.getUsername().subscribe((data: any) => this.user = data.firstName);
+    this.service.getUsername().subscribe((data: any) => this.user = data.firstName,
+      error => {
+      this.router.navigate(['../auth'])
+      });
   }
 
   logOut(){

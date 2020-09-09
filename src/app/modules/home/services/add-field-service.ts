@@ -19,7 +19,7 @@ export class AddFieldService {
            required: boolean,
            active: boolean,
            userId: string) {
-    return this.http.post(environment.host + '/fields' + '/add', {
+    return this.http.post(environment.host + '/fields', {
         label,
         type,
         options,

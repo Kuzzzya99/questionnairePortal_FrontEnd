@@ -5,6 +5,7 @@ import {AddFieldService} from "../../services/add-field-service";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {FieldType} from "../../../../model/FieldType";
+import { Field } from 'src/app/model/Field';
 
 @Component({
   selector: 'app-add-field',
@@ -17,6 +18,7 @@ export class AddFieldComponent implements OnInit {
   @Input() buttonAdd: boolean;
   isRequired = false;
   isActive = false;
+  @Input() arr: Field[] = [];
 
   selectedValue: FieldType;
 
@@ -74,12 +76,18 @@ export class AddFieldComponent implements OnInit {
       this.parseOption(),
       this.isRequired,
       this.isActive,
-      this.cookieService.get('userId')).subscribe(data =>
-        data,
+      this.cookieService.get('userId')).subscribe((response: any) => {
+        this.arr.push({
+          label: response.label,
+          fieldId: response.fieldId,
+          type: response.type,
+          required: response.required,
+          active: response.active
+        });
+      },
       error => {
         alert("Invalid data")
-      },
-      () => this.router.navigate(['../home/homePage']))
+      });
   }
 
   required() {

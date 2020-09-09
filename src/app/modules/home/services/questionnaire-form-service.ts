@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Answer} from "../../../model/Answer";
 import {CookieService} from "ngx-cookie-service";
@@ -9,14 +9,15 @@ import {CookieService} from "ngx-cookie-service";
 })
 
 export class QuestionnaireFormService {
-  private userId = '1';
+  private userId = '2';
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
   }
 
   getFields() {
-    return this.http.get(environment.host + "/responses/form/" + this.userId)
+    let param = new HttpParams().set("userId", "2");
+    return this.http.get(environment.host + "/responses/form", {params: param})
   }
 
   postAnswer(answer: Answer[]) {

@@ -3,39 +3,51 @@
   <div class="container__inner">
     <div class="title">
     </div>
-    <div class="form">
-      <div *ngFor="let item of arr">
+    <div class="form" [formGroup]="formGroup">
+      <div *ngFor="let item of arr" >
         <div>
           {{item.label}}
         </div>
         <div *ngIf="item.type === 1" class="text">
-          <input type="text">
+          <input class="single-line-input" type="text" formControlName="{{item.label}}">
         </div>
         <div *ngIf="item.type === 2" class="text">
-          <textarea rows="5"></textarea>
+          <textarea class="multiline-input" rows="5" formControlName="{{item.label}}"></textarea>
         </div>
         <div class= "one-answer"*ngIf="item.type === 3">
-          <label *ngFor="let n of item.options"><input type="radio">{{n}}</label>
+          <fieldset id="group1">
+            <div id="{{item.label}}">
+          <label *ngFor="let n of item.options" >
+            <input type="radio" name="{{item.label}}" value="{{n}}">{{n}}</label>
+            </div>
+          </fieldset>
         </div>
         <div *ngIf="item.type === 4">
-          <label *ngFor="let n of item.options"><input type="checkbox">{{n}}</label>
+          <label *ngFor="let n of item.options">
+            <input type="checkbox" name="{{item.label}}" value="{{n}}">{{n}}</label>
         </div>
         <div *ngIf="item.type === 5">
-          <select class="form-control">
-            <option *ngFor="let n of item.options">{{n}}</option>
+          <select class="form-control option" formControlName="{{item.label}}">
+            <option *ngFor="let n of item.options" value="{{n}}">{{n}}</option>
           </select>
         </div>
         <div *ngIf="item.type === 6">
-          <div class="input-group date" data-provide="date-picker">
-            <input type="text" class="form-control">
-            <div class="input-group-addon">
-              <span class="glyphicon glyphicon-th"></span>
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control date" placeholder="yyyy-mm-dd"
+                       name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+              </div>
             </div>
-          </div>
-
+          </form>
         </div>
       </div>
-      <button>SUBMIT</button>
+      <div class="save-button">
+      <button (click)="save()">SUBMIT</button>
+      </div>
     </div>
   </div>
 </div>

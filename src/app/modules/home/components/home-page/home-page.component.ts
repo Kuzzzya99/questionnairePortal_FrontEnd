@@ -5,7 +5,7 @@ import {FieldType} from "../../../../model/FieldType";
 import {CookieService} from "ngx-cookie-service";
 import {environment} from "../../../../../environments/environment";
 import {EditFieldComponent} from "../edit-field/edit-field.component";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -22,7 +22,8 @@ export class HomePageComponent implements OnInit {
 
   constructor(private service: HomePageService,
               private cookieService: CookieService,
-              private router: Router
+              private router: Router,
+              private activatedRoute: ActivatedRoute
   ) {
   }
 
@@ -35,7 +36,6 @@ export class HomePageComponent implements OnInit {
       this.arr = data;
     })
   }
-
 
   findTypeIndex(a) {
     let typeIndex;

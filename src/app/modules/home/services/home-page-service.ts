@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Field} from "../../../model/Field";
 import {CookieService} from "ngx-cookie-service";
@@ -16,7 +16,8 @@ export class HomePageService {
   }
 
   findAllFields(){
-    return this.http.get(environment.host + "/fields/all/" + this.cookieService.get("userId"))
+    let param = new HttpParams().set("userId", this.cookieService.get("userId"));
+    return this.http.get(environment.host + "/fields", {params: param})
   }
 
   deleteField(fieldId) {
