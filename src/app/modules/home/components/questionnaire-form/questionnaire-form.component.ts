@@ -16,16 +16,23 @@ import {group} from "@angular/animations";
 })
 export class QuestionnaireFormComponent implements OnInit {
 
-  answer: Answer[]=[];
   arr: DataForForm[] = [];
-  public numOfOptions: string[] = [];
   model: NgbDateStruct;
   formGroup: FormGroup;
   formControlArr = [];
-  radio = [];
-  private radioAnswer = [];
-  private dateAnswer = [];
-  private checkboxAnswer = [];
+  private radioAnswer: Answer;
+  private dateAnswer: Answer[] = [];
+  private checkboxAnswer: Answer[] = [];
+  private formGroupKeys: string[];
+  private formGroupValues: string[];
+  private formGroupAnswer: Answer[] = [];
+  private formGroupKeyValue: Answer;
+  private dateModel: Answer;
+  private checkModel: Answer;
+  private checkboxValues: string[] = [];
+  private date: number[];
+  private splittedDate: any[] = [];
+  private myJSON: string;
 
 
   constructor(private service: QuestionnaireFormService) {
@@ -62,11 +69,12 @@ export class QuestionnaireFormComponent implements OnInit {
     this.arr.forEach(el => {
       if (el.type === 3) {
         var radios = document.getElementsByName(el.label);
-        for (var i = 0; i < radios.length; i++) {
+        for (let i = 0; i < radios.length; i++) {
           //@ts-ignore
           if (radios[i].checked) {
             //@ts-ignore
-            this.radioAnswer = radios[i].value;
+            this.radioAnswer = new Answer(el.label, radios[i].value);
+            this.formGroupAnswer.push(this.radioAnswer);
             return true; // checked
           }
         }
@@ -77,41 +85,53 @@ export class QuestionnaireFormComponent implements OnInit {
   getDateAnswer() {
     this.arr.forEach(el => {
       if (el.type === 6) {
-        this.dateAnswer.push(this.model);
+        this.date = Object.values(this.model);
+        this.dateModel = new Answer(el.label, this.date.join('/'));
+        this.formGroupAnswer.push(this.dateModel);
       }
     })
   }
 
   getCheckboxAnswer() {
+    this.checkboxValues = [];
     this.arr.forEach(el => {
       if (el.type === 4) {
         var radios = document.getElementsByName(el.label);
-        for (var i = 0; i < radios.length; i++) {
+        for (let i = 0; i < radios.length; i++) {
           //@ts-ignore
           if (radios[i].checked) {
             //@ts-ignore
-            this.checkboxAnswer.push(radios[i].value);
+            this.checkboxValues.push(radios[i].value);
           }
         }
+        //@ts-ignore
+        this.checkModel = new Answer(el.label, this.checkboxValues.join(', '));
+        this.formGroupAnswer.push(this.checkModel);
       }
     })
   }
 
-  getAnswer(){
-
+  getAnswer() {
+    this.formGroupKeys = Object.keys(this.formGroup.getRawValue());
+    this.formGroupValues = Object.values(this.formGroup.getRawValue());
+    for (let i = 0; i < this.formGroupKeys.length; i++) {
+      this.formGroupKeyValue = new Answer(this.formGroupKeys[i], this.formGroupValues[i]);
+      this.formGroupAnswer.push(this.formGroupKeyValue);
+    }
+    this.getRadioButtonAnswer();
+    this.getDateAnswer();
+    this.getCheckboxAnswer();
+    this.myJSON = JSON.stringify(this.formGroupAnswer);
   }
 
 
   save() {
-    this.getRadioButtonAnswer();
-    this.getCheckboxAnswer();
-    this.getDateAnswer();
-    console.log(this.formGroup.getRawValue(),
-      this.radioAnswer,
-      this.checkboxAnswer,
-      this.dateAnswer);
-    this.radioAnswer = [];
-    this.checkboxAnswer = [];
-    this.dateAnswer = [];
+    this.getAnswer();
+    console.log(
+      this.myJSON);
+    this.service.addResponse(this.myJSON).subscribe(data =>
+      console.log(data));
+    this.formGroupAnswer = [];
   }
+
 }

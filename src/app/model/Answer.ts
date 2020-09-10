@@ -1,11 +1,12 @@
 export class Answer {
   private label;
-  private value;
+  private answer;
 
   constructor(label: string,
               value: string,
   ) {
     this.label = label;
-    this.value = value;
+    this.answer = value;
   }
 }
+
