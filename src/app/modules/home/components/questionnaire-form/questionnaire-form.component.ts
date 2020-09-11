@@ -8,6 +8,7 @@ import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {forEachComment} from "tslint";
 import {group} from "@angular/animations";
+import {stringify} from "querystring";
 
 @Component({
   selector: 'app-questionnaire-form',
@@ -33,6 +34,8 @@ export class QuestionnaireFormComponent implements OnInit {
   private date: number[];
   private splittedDate: any[] = [];
   private myJSON: string;
+  private myObj: Object = {response: Answer};
+  private response: Object;
 
 
   constructor(private service: QuestionnaireFormService) {
@@ -121,7 +124,6 @@ export class QuestionnaireFormComponent implements OnInit {
     this.getRadioButtonAnswer();
     this.getDateAnswer();
     this.getCheckboxAnswer();
-    this.myJSON = JSON.stringify(this.formGroupAnswer);
   }
 
 
@@ -129,7 +131,7 @@ export class QuestionnaireFormComponent implements OnInit {
     this.getAnswer();
     console.log(
       this.myJSON);
-    this.service.addResponse(this.myJSON).subscribe(data =>
+    this.service.addResponse(this.formGroupAnswer).subscribe(data =>
       console.log(data));
     this.formGroupAnswer = [];
   }
