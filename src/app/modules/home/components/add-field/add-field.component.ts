@@ -39,7 +39,6 @@ export class AddFieldComponent implements OnInit {
         // Validators.pattern('(^[A-Z][a-z]+)+\,(^[A-Z][a-z]+)+')
       ]),
       Label: new FormControl('', [
-        Validators.pattern('^[A-Z][a-z]+')
       ]),
       Type: new FormControl('', [
         Validators.required

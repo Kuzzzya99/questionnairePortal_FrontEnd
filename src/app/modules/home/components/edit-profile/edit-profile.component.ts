@@ -21,6 +21,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserProfileInfo();
     this.formGroup = new FormGroup({
       FirstName: new FormControl('', [
         Validators.pattern('^[A-Z][a-z]+')
@@ -28,11 +29,10 @@ export class EditProfileComponent implements OnInit {
       LastName: new FormControl('', [
         Validators.pattern('^[A-Z][a-z]+')
       ]),
-      Phone: new FormControl('', [
+      Phone: new FormControl(null, [
         Validators.pattern('^[\\+\\d+]')
       ])
     })
-    this.getUserProfileInfo();
   }
 
   getUserProfileInfo() {
@@ -47,7 +47,7 @@ export class EditProfileComponent implements OnInit {
     this.service.editProfile(this.formGroup.value.FirstName,
       this.formGroup.value.LastName,
       this.formGroup.value.Phone).subscribe(data =>
-        console.log(data),
+       data,
       error => {
         alert("Invalid data")
       },

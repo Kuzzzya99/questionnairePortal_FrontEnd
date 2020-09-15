@@ -5,6 +5,22 @@
   align-items: center;
 }
 
+.row{
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.disabled {
+  background-color: lightgrey !important;
+  border: none !important;
+}
+
+.red{
+  color: red;
+}
+
 label {
   display: flex;
   flex-direction: row;

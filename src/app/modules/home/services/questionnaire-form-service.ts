@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Answer} from "../../../model/Answer";
 import {stringify} from "querystring";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: "root"
@@ -10,7 +11,8 @@ import {stringify} from "querystring";
 
 export class QuestionnaireFormService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private cookieService: CookieService) {
   }
 
   getFields() {
@@ -20,6 +22,7 @@ export class QuestionnaireFormService {
 
   addResponse(response) {
     response = new Object(response);
-    return this.http.post(environment.host + "/responses", {response})
+    let param = new HttpParams().set("userId", this.cookieService.get("userId"));
+    return this.http.post(environment.host + "/responses", {response}, {params:param})
   }
 }

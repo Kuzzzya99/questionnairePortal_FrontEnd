@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
       this.formGroup.value.Surname,
       this.formGroup.value.Phone))
       .subscribe(data =>
-          console.log(data),
+          data,
         error => {
           alert("User with this email already exists")
         },

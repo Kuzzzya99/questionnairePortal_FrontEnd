@@ -10,7 +10,6 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.log('INTERCEPTOR');
     const token = this.cookieService.get("token");
     let newHeaders = req.headers;
     if (token) {

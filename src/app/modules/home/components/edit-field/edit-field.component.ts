@@ -79,7 +79,7 @@ export class EditFieldComponent implements OnInit {
       this.isRequired,
       this.isActive,
       this.cookieService.get('userId')).subscribe(data =>
-        console.log(data),
+        data,
       error => {
         alert("Invalid data")
       },

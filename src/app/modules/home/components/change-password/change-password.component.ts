@@ -32,7 +32,7 @@ export class ChangePasswordComponent implements OnInit {
   changePassword() {
     this.service.changePassword(this.formGroup.value.Password,
       this.formGroup.value.NewPassword).subscribe(data =>
-        console.log(data),
+        (data),
       error => {
         alert("Wrong password")
       },

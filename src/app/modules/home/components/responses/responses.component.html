@@ -6,22 +6,23 @@
     </div>
     <table class="table table-striped">
       <thead>
-      <tr>
-        <th scope="col" *ngFor="let item of numOfFields">Label</th>
-      </tr>
+        <tr>
+          <th scope="col" *ngFor="let item of arrOfFields">{{item.label}}</th>
+        </tr>
       </thead>
-
       <tbody>
-      <tr *ngFor="let item of numOfResponses">
-        <td *ngFor="let item of numOfFields">Name</td>
-      </tr>
+          <tr *ngFor="let worksheet of arrOfWorksheets">
+            <td *ngFor="let val of getAnswer(worksheet)">
+              {{val?.answer}}
+            </td>
+          </tr>
       </tbody>
 
     </table>
     <div class="mat-paginator">
       <ngb-pagination [(page)]="page"
                       [pageSize]="pageSize"
-                      [collectionSize]="numOfResponses.length">
+                      [collectionSize]="arrOfAnswers.length">
         <ng-template ngbPaginationEllipsis>...</ng-template>
         <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
       </ngb-pagination>

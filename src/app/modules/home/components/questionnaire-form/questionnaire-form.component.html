@@ -5,8 +5,8 @@
     </div>
     <div class="form" [formGroup]="formGroup">
       <div *ngFor="let item of arr" >
-        <div>
-          {{item.label}}
+        <div class="row">
+          {{item.label}} <div class="red" *ngIf="item.required">*</div>
         </div>
         <div *ngIf="item.type === 1" class="text">
           <input class="single-line-input" type="text" formControlName="{{item.label}}">
@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="save-button">
-      <button (click)="save()">SUBMIT</button>
+      <button [class.disabled]="!formGroup.valid" (click)="save()">SUBMIT</button>
       </div>
     </div>
   </div>
