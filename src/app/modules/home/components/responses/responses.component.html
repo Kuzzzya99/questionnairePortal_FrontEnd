@@ -6,16 +6,16 @@
     </div>
     <table class="table table-striped">
       <thead>
-        <tr>
-          <th scope="col" *ngFor="let item of arrOfFields">{{item.label}}</th>
-        </tr>
+      <tr>
+        <th scope="col" *ngFor="let item of arrOfFields">{{item.label}}</th>
+      </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let worksheet of arrOfWorksheets">
-            <td *ngFor="let val of getAnswer(worksheet)">
-              {{val?.answer}}
-            </td>
-          </tr>
+      <tr *ngFor="let worksheet of arrOfWorksheets">
+        <td *ngFor="let val of getAnswer(worksheet)">
+          {{val?.answer}}
+        </td>
+      </tr>
       </tbody>
 
     </table>

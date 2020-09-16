@@ -13,13 +13,13 @@ export class ResponsesService {
               private cookieService: CookieService) {
   }
 
-  findAllFields(){
+  findAllFields() {
     let param = new HttpParams().set("userId", this.cookieService.get("userId"));
     return this.http.get(environment.host + "/fields", {params: param})
   }
 
   responses() {
     let param = new HttpParams().set("userId", this.cookieService.get("userId"));
-    return this.http.get(environment.host + "/responses", {params:param})
+    return this.http.get(environment.host + "/responses", {params: param})
   }
 }

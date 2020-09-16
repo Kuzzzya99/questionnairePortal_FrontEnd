@@ -15,7 +15,7 @@ import {SharedModule} from "../../shared/shared.module";
 import {AddFieldComponent} from './components/add-field/add-field.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import { EditFieldComponent } from './components/edit-field/edit-field.component';
+import {EditFieldComponent} from './components/edit-field/edit-field.component';
 
 
 @NgModule({

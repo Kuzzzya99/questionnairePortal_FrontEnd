@@ -23,12 +23,12 @@
       <tbody>
       <tr *ngFor="let item of arr">
         <td>{{item.label}}</td>
-        <td >{{findTypeIndex(item.type)}}</td>
+        <td>{{findTypeIndex(item.type)}}</td>
         <td>{{item.required}}</td>
         <td>{{item.active}}</td>
         <td>
           <app-edit-field [text]="'Edit field'" [buttonAdd]=false
-          (click)="setFieldId(item.fieldId)" [field]=item></app-edit-field>
+                          (click)="setFieldId(item.fieldId)" [field]=item></app-edit-field>
         </td>
         <td>
           <mat-icon (click)="deleteField(item.fieldId)">delete</mat-icon>

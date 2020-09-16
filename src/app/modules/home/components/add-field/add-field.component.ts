@@ -5,7 +5,7 @@ import {AddFieldService} from "../../services/add-field-service";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {FieldType} from "../../../../model/FieldType";
-import { Field } from 'src/app/model/Field';
+import {Field} from 'src/app/model/Field';
 
 @Component({
   selector: 'app-add-field',
@@ -38,12 +38,13 @@ export class AddFieldComponent implements OnInit {
       Option: new FormControl('', [
         // Validators.pattern('(^[A-Z][a-z]+)+\,(^[A-Z][a-z]+)+')
       ]),
-      Label: new FormControl('', [
-      ]),
+      Label: new FormControl('', []),
       Type: new FormControl('', [
         Validators.required
       ])
     })
+    this.isRequired = false;
+    this.isActive = false;
   }
 
   constructor(config: NgbModalConfig,

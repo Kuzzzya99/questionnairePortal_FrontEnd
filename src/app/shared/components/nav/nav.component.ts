@@ -19,19 +19,19 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.signIn === true){
-    this.getUsername();
+    if (this.signIn === true) {
+      this.getUsername();
     }
   }
 
   getUsername() {
     this.service.getUsername().subscribe((data: any) => this.user = data.firstName,
       error => {
-      this.router.navigate(['../auth'])
+        this.router.navigate(['../auth'])
       });
   }
 
-  logOut(){
+  logOut() {
     this.service.logOut().subscribe((data: any) => this.cookieService.deleteAll(),
       error => {
         alert("Can't logout")

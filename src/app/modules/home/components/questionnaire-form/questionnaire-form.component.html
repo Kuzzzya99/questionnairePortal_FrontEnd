@@ -4,9 +4,10 @@
     <div class="title">
     </div>
     <div class="form" [formGroup]="formGroup">
-      <div *ngFor="let item of arr" >
+      <div *ngFor="let item of arr">
         <div class="row">
-          {{item.label}} <div class="red" *ngIf="item.required">*</div>
+          {{item.label}}
+          <div class="red" *ngIf="item.required">*</div>
         </div>
         <div *ngIf="item.type === 1" class="text">
           <input class="single-line-input" type="text" formControlName="{{item.label}}">
@@ -14,11 +15,11 @@
         <div *ngIf="item.type === 2" class="text">
           <textarea class="multiline-input" rows="5" formControlName="{{item.label}}"></textarea>
         </div>
-        <div class= "one-answer"*ngIf="item.type === 3">
+        <div class="one-answer" *ngIf="item.type === 3">
           <fieldset id="group1">
             <div id="{{item.label}}">
-          <label *ngFor="let n of item.options" >
-            <input type="radio" name="{{item.label}}" value="{{n}}">{{n}}</label>
+              <label *ngFor="let n of item.options">
+                <input type="radio" name="{{item.label}}" value="{{n}}">{{n}}</label>
             </div>
           </fieldset>
         </div>
@@ -46,7 +47,7 @@
         </div>
       </div>
       <div class="save-button">
-      <button [class.disabled]="!formGroup.valid" (click)="save()">SUBMIT</button>
+        <button [class.disabled]="!formGroup.valid" (click)="save()">SUBMIT</button>
       </div>
     </div>
   </div>

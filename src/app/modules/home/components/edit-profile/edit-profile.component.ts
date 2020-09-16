@@ -47,7 +47,7 @@ export class EditProfileComponent implements OnInit {
     this.service.editProfile(this.formGroup.value.FirstName,
       this.formGroup.value.LastName,
       this.formGroup.value.Phone).subscribe(data =>
-       data,
+        data,
       error => {
         alert("Invalid data")
       },

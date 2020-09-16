@@ -1,10 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Field} from "../../../../model/Field";
 import {HomePageService} from "../../services/home-page-service";
-import {FieldType} from "../../../../model/FieldType";
 import {CookieService} from "ngx-cookie-service";
-import {environment} from "../../../../../environments/environment";
-import {EditFieldComponent} from "../edit-field/edit-field.component";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -67,7 +64,7 @@ export class HomePageComponent implements OnInit {
       error => {
         alert("Can't delete field")
       },
-      () =>  this.findAllFields())
+      () => this.findAllFields())
   }
 
 

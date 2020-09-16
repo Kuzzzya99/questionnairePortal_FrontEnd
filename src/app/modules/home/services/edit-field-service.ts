@@ -19,7 +19,7 @@ export class EditFieldService {
             required: boolean,
             active: boolean,
             userId: string) {
-    return this.http.put(environment.host + '/fields/' + this.cookieService.get('fieldId') , {
+    return this.http.put(environment.host + '/fields/' + this.cookieService.get('fieldId'), {
         label,
         type,
         options,

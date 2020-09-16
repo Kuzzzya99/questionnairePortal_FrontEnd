@@ -18,7 +18,7 @@ export class NavService {
     return this.http.get(environment.host + '/user/' + this.cookieService.get('userId'));
   }
 
-  logOut(){
-    return this.http.post(environment.host + '/user/' +  this.cookieService.get('userId') + '/logout', this.tokenId)
+  logOut() {
+    return this.http.post(environment.host + '/user/' + this.cookieService.get('userId') + '/logout', this.tokenId)
   }
 }

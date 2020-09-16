@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ResponsesService} from "../../services/responses-service";
 import {Field} from "../../../../model/Field";
-import {Answer} from "../../../../model/Answer";
 import {Worksheet} from "../../../../model/Worksheet";
 
 @Component({
@@ -37,7 +36,6 @@ export class ResponsesComponent implements OnInit {
   responses() {
     this.service.responses().subscribe((data: Worksheet[]) => {
       this.arrOfWorksheets = data;
-      // this.getAnswer(2);
     })
   }
 

@@ -5,7 +5,7 @@ export class FieldType {
   constructor(value: number,
               viewValue: string,
   ) {
-  this.value = value;
-  this.viewValue = viewValue;
-}
+    this.value = value;
+    this.viewValue = viewValue;
+  }
 }

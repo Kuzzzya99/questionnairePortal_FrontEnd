@@ -1,16 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionnaireFormService} from "../../services/questionnaire-form-service";
 import {Answer} from "../../../../model/Answer";
-import {Field} from "../../../../model/Field";
-import {FieldOption} from "../../../../model/FieldOption";
 import {DataForForm} from "../../../../model/DataForForm";
 import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {forEachComment} from "tslint";
-import {group} from "@angular/animations";
-import {stringify} from "querystring";
 import {Router} from "@angular/router";
-import {Question} from "../../../../model/Question";
 
 @Component({
   selector: 'app-questionnaire-form',
@@ -131,14 +125,13 @@ export class QuestionnaireFormComponent implements OnInit {
     this.formGroupValues = Object.values(this.formGroup.getRawValue());
     for (let i = 0; i < this.formGroupValues.length; i++) {
       if (this.formGroupValues[i] != '') {
-          this.questions = Object.values(this.questionList[i]);
-          this.formGroupKeys.forEach(el=> {
-            console.log(el, this.questions[1]);
-            if (this.questions[1] === el) {
-              this.formGroupKeyValue = new Answer(this.questions[0], this.formGroupKeys[i], this.formGroupValues[i]);
-              this.formGroupAnswer.push(this.formGroupKeyValue);
-            }
-          })
+        this.questions = Object.values(this.questionList[i]);
+        this.formGroupKeys.forEach(el => {
+          if (this.questions[1] === el) {
+            this.formGroupKeyValue = new Answer(this.questions[0], this.formGroupKeys[i], this.formGroupValues[i]);
+            this.formGroupAnswer.push(this.formGroupKeyValue);
+          }
+        })
       }
     }
     this.getRadioButtonAnswer();
@@ -147,10 +140,15 @@ export class QuestionnaireFormComponent implements OnInit {
     this.questionList = [];
   }
 
+  makeAnswerInCorrectOrder(formGroupAnswer) {
+    formGroupAnswer.sort((a, b) => a.id > b.id ? 1 : -1);
+    return formGroupAnswer;
+  }
+
 
   save() {
     this.getAnswer();
-    this.service.addResponse(this.formGroupAnswer).subscribe((data) =>
+    this.service.addResponse(this.makeAnswerInCorrectOrder(this.formGroupAnswer)).subscribe((data) =>
         (data),
       error => {
         alert("Invalid data")
