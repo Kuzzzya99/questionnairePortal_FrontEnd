@@ -20,6 +20,6 @@ export class ResponsesService {
 
   responses() {
     let param = new HttpParams().set("userId", this.cookieService.get("userId"));
-    return this.http.get(environment.host + "/responses", {params: param})
+    return this.http.get(environment.host + "/responses/all", {params: param})
   }
 }
