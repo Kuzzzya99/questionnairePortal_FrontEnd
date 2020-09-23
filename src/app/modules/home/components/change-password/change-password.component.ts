@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChangePasswordService} from '../../services/change-password-service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-change-password',
@@ -12,7 +13,8 @@ export class ChangePasswordComponent implements OnInit {
   public formGroup: FormGroup;
 
   constructor(private service: ChangePasswordService,
-              public router: Router) {
+              public router: Router,
+              private cookieService: CookieService) {
   }
 
   ngOnInit(): void {
@@ -29,11 +31,13 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword() {
     this.service.changePassword(this.formGroup.value.Password,
-      this.formGroup.value.NewPassword) .subscribe(data =>
-        console.log(data),
+      this.formGroup.value.NewPassword).subscribe(data =>
+        (data),
       error => {
         alert("Wrong password")
       },
-      () => this.router.navigate(['../auth']))
+      () => (this.cookieService.deleteAll(),
+          this.router.navigate(['../auth'])
+      ))
   }
 }

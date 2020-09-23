@@ -3,39 +3,52 @@
   <div class="container__inner">
     <div class="title">
     </div>
-    <div class="form">
-      <div *ngFor="let item of numOfFields">
-        <div>
+    <div class="form" [formGroup]="formGroup">
+      <div *ngFor="let item of arr">
+        <div class="row">
           {{item.label}}
+          <div class="red" *ngIf="item.required">*</div>
         </div>
-        <div *ngIf="item.type === 'single_line_text'">
-          <input type="text">
+        <div *ngIf="item.type === 1" class="text">
+          <input class="single-line-input" type="text" formControlName="{{item.label}}">
         </div>
-        <div *ngIf="item.type === 'multiline_line_text'">
-          <textarea rows="5"></textarea>
+        <div *ngIf="item.type === 2" class="text">
+          <textarea class="multiline-input" rows="5" formControlName="{{item.label}}"></textarea>
         </div>
-        <div *ngIf="item.type === 'radio_button'">
-          <label *ngFor="let n of numOfOptions"><input type="radio">{{n.value}}</label>
+        <div class="one-answer" *ngIf="item.type === 3">
+          <fieldset id="group1">
+            <div id="{{item.label}}">
+              <label *ngFor="let n of item.options">
+                <input type="radio" name="{{item.label}}" value="{{n}}">{{n}}</label>
+            </div>
+          </fieldset>
         </div>
-        <div *ngIf="item.type === 'checkbox'">
-          <label *ngFor="let n of numOfOptions"><input type="checkbox">{{n.value}}</label>
+        <div *ngIf="item.type === 4">
+          <label *ngFor="let n of item.options">
+            <input type="checkbox" name="{{item.label}}" value="{{n}}">{{n}}</label>
         </div>
-        <div *ngIf="item.type === 'combobox'">
-          <select class="form-control">
-            <option *ngFor="let n of numOfOptions">{{n.value}}</option>
+        <div *ngIf="item.type === 5">
+          <select class="form-control option" formControlName="{{item.label}}">
+            <option *ngFor="let n of item.options" value="{{n}}">{{n}}</option>
           </select>
         </div>
-        <div *ngIf="item.type === 'date'">
-          <div class="input-group date" data-provide="date-picker">
-            <input type="text" class="form-control">
-            <div class="input-group-addon">
-              <span class="glyphicon glyphicon-th"></span>
+        <div *ngIf="item.type === 6">
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control date" placeholder="yyyy-mm-dd"
+                       name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+              </div>
             </div>
-          </div>
-
+          </form>
         </div>
       </div>
-      <button>SUBMIT</button>
+      <div class="save-button">
+        <button [class.disabled]="!formGroup.valid" (click)="save()">SUBMIT</button>
+      </div>
     </div>
   </div>
 </div>

@@ -30,14 +30,15 @@ export class LoginComponent implements OnInit {
         Validators.minLength(4)
       ]),
     })
-    // this.cookieService.set('cookie-name', 'our cookie value');
-    // this.cookieValue = this.cookieService.get('cookie-name');
+    this.cookieService.deleteAll();
   }
 
   login() {
     this.loginService.login(this.formGroup.value.Username, this.formGroup.value.Password).subscribe(
       (data: any) => (
-        this.cookieService.set('userId', data.userId)
+        this.cookieService.set('userId', data.id),
+          this.cookieService.set('token', data.token),
+          this.cookieService.set('tokenId', data.tokenId)
       ),
       error =>
         alert('Wrong user or password'),

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {EditProfileService} from "../../services/edit-profile-service";
-import {EditProfileMockService} from "../../mock-services/edit-profile-mock-service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -11,10 +10,10 @@ import {Router} from "@angular/router";
 })
 export class EditProfileComponent implements OnInit {
   public formGroup: FormGroup;
-  public user;
-  public login;
+
   public firstName;
   public lastName;
+  public login;
   public phone;
 
   constructor(private service: EditProfileService,
@@ -22,30 +21,24 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserProfileInfo();
     this.formGroup = new FormGroup({
-      Username: new FormControl('', [
-        Validators.required,
-        Validators.email,
-        Validators.minLength(5)
-      ]),
       FirstName: new FormControl('', [
         Validators.pattern('^[A-Z][a-z]+')
       ]),
       LastName: new FormControl('', [
         Validators.pattern('^[A-Z][a-z]+')
       ]),
-      Phone: new FormControl('', [
+      Phone: new FormControl(null, [
         Validators.pattern('^[\\+\\d+]')
       ])
     })
-    this.getUserProfileInfo();
   }
 
   getUserProfileInfo() {
     this.service.getUserProfileInfo().subscribe(
       (data: any) => (
-          this.login = data.login,
-          this.firstName = data.firstName,
+        this.firstName = data.firstName,
           this.lastName = data.lastName,
           this.phone = data.phoneNumber))
   }
@@ -53,9 +46,8 @@ export class EditProfileComponent implements OnInit {
   editProfile() {
     this.service.editProfile(this.formGroup.value.FirstName,
       this.formGroup.value.LastName,
-      this.formGroup.value.Username,
       this.formGroup.value.Phone).subscribe(data =>
-        console.log(data),
+        data,
       error => {
         alert("Invalid data")
       },

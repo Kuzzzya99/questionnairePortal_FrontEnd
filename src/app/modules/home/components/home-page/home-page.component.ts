@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Field} from "../../../../model/Field";
-import {environment} from "../../../../../environments/environment";
-import {EditProfileService} from "../../services/edit-profile-service";
 import {HomePageService} from "../../services/home-page-service";
-import {HomePageMockService} from "../../mock-services/home-page-mock-service";
-import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
+import {CookieService} from "ngx-cookie-service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -13,67 +11,66 @@ import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 })
 export class HomePageComponent implements OnInit {
 
-  public arr = [1, 2, 3];
-  private field: Field = new Field("1", "Color", "single_line_text", true, true);
+  arr: Field[] = [];
+  page = 1;
+  pageSize = 10;
+  fieldType: any;
 
-  page= 1;
-  pageSize= 10;
 
   constructor(private service: HomePageService,
-              private mockService: HomePageMockService,
-  ){}
+              private cookieService: CookieService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
-
+    this.findAllFields();
   }
 
-  homePagePost(field = this.field) {
-    this.mockService.homePagePost(field).subscribe(data => {
-      console.log(data);
+  findAllFields() {
+    this.service.findAllFields().subscribe((data: Field[]) => {
+      this.arr = data;
     })
   }
 
-  homePageGet() {
-    this.mockService.homePageGet().subscribe(data => {
-      console.log(data);
-    })
+  findTypeIndex(a) {
+    let typeIndex;
+    switch (a) {
+      case 1:
+        typeIndex = 'Single line text';
+        break;
+      case 2:
+        typeIndex = 'Multiline text';
+        break;
+      case 3:
+        typeIndex = 'Radio button';
+        break;
+      case 4:
+        typeIndex = 'Checkbox';
+        break;
+      case 5:
+        typeIndex = 'Combobox';
+        break;
+      case 6:
+        typeIndex = 'Date';
+        break;
+    }
+    return typeIndex;
   }
 
-  homePagePut(field = this.field) {
-    this.mockService.homePagePut(field).subscribe(data => {
-      console.log(data);
-    })
+  deleteField(fieldId) {
+    this.service.deleteField(fieldId).subscribe(data => alert('You have successfully delete field'),
+      error => {
+        alert("Can't delete field")
+      },
+      () => this.findAllFields())
   }
 
-  homePageDelete(id) {
-    this.mockService.homePageDelete(id).subscribe(data => {
-      console.log(data);
-    })
-  }
 
-  // homePagePost(field: Field) {
-  //   this.service.homePagePost(field).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePageGet() {
-  //   this.service.homePageGet().subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePagePut(field: Field) {
-  //   this.service.homePagePut(field).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // homePageDelete(id) {
-  //   this.service.homePageDelete(id).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
+  setFieldId(fieldId) {
+    this.cookieService.set('fieldId', fieldId);
+  }
 
 
 }

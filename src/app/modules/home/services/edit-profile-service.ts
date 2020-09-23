@@ -1,31 +1,35 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {User} from "../../../model/User";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
-  providedIn:"root"
+  providedIn: "root"
 })
 
-export class EditProfileService{
+export class EditProfileService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private cookieService: CookieService) {
+  }
 
-  editProfile(firstName:string,
-              lastName:string,
-              login:string,
-              phoneNumber:string){
-    return this.http.post(environment.host + "/edit_profile", {
-      firstName,
-      lastName,
-      login,
-      phoneNumber
+  editProfile(firstName: string,
+              lastName: string,
+              phoneNumber: string) {
+    return this.http.post(environment.host + '/user/' +
+      this.cookieService.get('userId') +
+      '/edit_profile', {
+        firstName,
+        lastName,
+        phoneNumber
       }
     )
   }
 
   getUserProfileInfo() {
-    return this.http.get(environment.host + '/edit_profile');
+    return this.http.get(environment.host + '/user/' +
+      this.cookieService.get('userId') +
+      '/edit_profile');
   }
 
 

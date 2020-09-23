@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavComponent } from './components/nav/nav.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NavComponent} from './components/nav/nav.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
-
 
 
 @NgModule({
@@ -13,11 +11,12 @@ import {RouterModule} from "@angular/router";
   exports: [
     NavComponent
   ],
-    imports: [
-        CommonModule,
-        NgbModule,
-        MatIconModule,
-        RouterModule,
-    ]
+  imports: [
+    CommonModule,
+    NgbModule,
+    MatIconModule,
+    RouterModule,
+  ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

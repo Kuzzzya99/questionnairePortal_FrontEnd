@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {ChangePasswordComponent} from "./components/change-password/change-password.component";
 import {EditProfileComponent} from "./components/edit-profile/edit-profile.component";
 import {HomePageComponent} from "./components/home-page/home-page.component";
@@ -22,4 +22,5 @@ const homeRoutes: Routes = [
   imports: [RouterModule.forChild(homeRoutes)],
   exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class HomeRoutingModule {
+}

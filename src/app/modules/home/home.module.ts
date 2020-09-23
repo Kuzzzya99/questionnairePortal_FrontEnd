@@ -1,19 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { QuestionnaireFormComponent } from './components/questionnaire-form/questionnaire-form.component';
-import { SuccessSubmitComponent } from './components/success-submit/success-submit.component';
-import { ResponsesComponent } from './components/responses/responses.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {HomePageComponent} from './components/home-page/home-page.component';
+import {QuestionnaireFormComponent} from './components/questionnaire-form/questionnaire-form.component';
+import {SuccessSubmitComponent} from './components/success-submit/success-submit.component';
+import {ResponsesComponent} from './components/responses/responses.component';
 import {ChangePasswordComponent} from "./components/change-password/change-password.component";
 import {EditProfileComponent} from "./components/edit-profile/edit-profile.component";
 import {HomeRoutingModule} from "./home-routing.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {SharedModule} from "../../shared/shared.module";
-import { AddFieldComponent } from './components/add-field/add-field.component';
-
+import {AddFieldComponent} from './components/add-field/add-field.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {EditFieldComponent} from './components/edit-field/edit-field.component';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { AddFieldComponent } from './components/add-field/add-field.component';
     QuestionnaireFormComponent,
     SuccessSubmitComponent,
     ResponsesComponent,
-    AddFieldComponent
+    AddFieldComponent,
+    EditFieldComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,11 @@ import { AddFieldComponent } from './components/add-field/add-field.component';
     ReactiveFormsModule,
     MatIconModule,
     MatPaginatorModule,
-    SharedModule
+    SharedModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+}

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ResponsesService} from "../../services/responses-service";
-import {ResponsesMockService} from "../../mock-services/responses-mock-service";
+import {Field} from "../../../../model/Field";
+import {Worksheet} from "../../../../model/Worksheet";
 
 @Component({
   selector: 'app-responses',
@@ -9,30 +10,40 @@ import {ResponsesMockService} from "../../mock-services/responses-mock-service";
 })
 export class ResponsesComponent implements OnInit {
 
-  public user = "JohnDoe@gmail.com";
-  public numOfFields: number[] = [1, 2, 3, 4];
-  public numOfResponses: number[] = [1, 2, 3, 4, 5, 6];
   page = 1;
   pageSize = 10;
+  public arrOfFields: Field[] = [];
+  public arrOfAnswers: Worksheet[] = [];
+  @Input() fieldId;
+  private temp: any;
+  public arrOfWorksheets: Worksheet[] = [];
+  public arrOfValues: Worksheet;
 
-  constructor(private service: ResponsesService,
-              private mockService: ResponsesMockService) {
+  constructor(private service: ResponsesService) {
   }
 
   ngOnInit(): void {
+    this.findAllFields();
+    this.responses();
   }
 
-  // responses() {
-  //   this.service.responses().subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-
+  findAllFields() {
+    this.service.findAllFields().subscribe((fields: Field[]) => {
+      this.arrOfFields = fields;
+    })
+  }
 
   responses() {
-    this.mockService.responses().subscribe(data => {
-      console.log(data);
+    this.service.responses().subscribe((data: Worksheet[]) => {
+      this.arrOfWorksheets = data;
     })
+  }
+
+  getAnswer(worksheet: Worksheet) {
+    const temp = this.arrOfWorksheets.find(el => {
+      return el.worksheetId === worksheet.worksheetId;
+    })
+    return temp.answerDTOS;
   }
 
 }

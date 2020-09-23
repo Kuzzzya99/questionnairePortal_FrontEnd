@@ -1,11 +1,15 @@
 export class Answer {
-  private fieldId;
-  private value;
+  private id;
+  private label;
+  public answer;
 
-  constructor(fieldId: number,
-              value: string,
-              ) {
-    this.fieldId = fieldId;
-    this.value = value;
+  constructor(id: number,
+              label: string,
+              answer: string,
+  ) {
+    this.id = id;
+    this.label = label;
+    this.answer = answer;
   }
 }
+

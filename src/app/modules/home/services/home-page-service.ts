@@ -1,30 +1,42 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {Field} from "../../../model/Field";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: "root"
 })
 
 export class HomePageService {
+  private field: string[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private cookieService: CookieService) {
   }
 
-  homePagePost(field: Field) {
-    return this.http.post(environment.host + "/fields", {field})
+  findAllFields() {
+    let param = new HttpParams().set("userId", this.cookieService.get("userId"));
+    return this.http.get(environment.host + "/fields", {params: param})
   }
 
-  homePageGet() {
-    return this.http.get(environment.host + "/fields")
+  deleteField(fieldId) {
+    return this.http.delete(environment.host + '/fields/' + fieldId)
   }
 
-  homePagePut(field: Field) {
-    return this.http.put(environment.host + "/fields", {field})
-  }
 
-  homePageDelete(id) {
-    return this.http.delete(environment.host + "/fields/id=" + id)
-  }
+  // homePagePost(field: Field) {
+  //   return this.http.post(environment.host + "/fields", {field})
+  // }
+  //
+  // homePageGet() {
+  //   return this.http.get(environment.host + "/fields")
+  // }
+  //
+  // homePagePut(field: Field) {
+  //   return this.http.put(environment.host + "/fields", {field})
+  // }
+  //
+  // homePageDelete(id) {
+  //   return this.http.delete(environment.host + "/fields/id=" + id)
+  // }
 }

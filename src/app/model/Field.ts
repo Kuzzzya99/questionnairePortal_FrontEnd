@@ -3,18 +3,18 @@ export class Field {
   label;
   type;
   required;
-  isActive;
+  active;
 
-  constructor(id: string,
+  constructor(fieldId: string,
               label: string,
               type: string,
               required: boolean,
-              isActive: boolean) {
-    this.fieldId = id;
+              active: boolean) {
+    this.fieldId = fieldId;
     this.label = label;
     this.type = type;
     this.required = required;
-    this.isActive = isActive;
+    this.active = active;
   }
 }
 

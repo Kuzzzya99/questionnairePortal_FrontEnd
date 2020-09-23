@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse nav-bar-text" id="navbarSupportedContent" *ngIf="signIn">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Fields</a>
+          <a class="nav-link" routerLink="../homePage">Fields</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Responses</a>
+          <a class="nav-link" routerLink="../responses">Responses</a>
         </li>
         <li style="align-items: center!important; justify-content: center; display: flex" class="nav-item">
           <div style="align-items: center; justify-content: center" ngbDropdown class="d-inline-block my">
@@ -27,7 +27,7 @@
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem routerLink="../editProfile">Edit Profile</button>
               <button ngbDropdownItem routerLink="../changePassword">Change Password</button>
-              <button ngbDropdownItem routerLink="../../login">Log Out </button>
+              <button ngbDropdownItem (click)="logOut()">Log Out</button>
             </div>
           </div>
         </li>

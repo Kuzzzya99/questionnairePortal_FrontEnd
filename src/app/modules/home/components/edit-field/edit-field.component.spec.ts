@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {NavComponent} from './nav.component';
+import {EditFieldComponent} from './edit-field.component';
 
-describe('NavComponent', () => {
-  let component: NavComponent;
-  let fixture: ComponentFixture<NavComponent>;
+describe('EditFieldComponent', () => {
+  let component: EditFieldComponent;
+  let fixture: ComponentFixture<EditFieldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NavComponent]
+      declarations: [EditFieldComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavComponent);
+    fixture = TestBed.createComponent(EditFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionnaireFormService} from "../../services/questionnaire-form-service";
-import {environment} from "../../../../../environments/environment";
 import {Answer} from "../../../../model/Answer";
-import {QuestionnaireFormMockService} from "../../mock-services/questionnaire-form-mock-service";
-import {Field} from "../../../../model/Field";
-import {FieldOption} from "../../../../model/FieldOption";
+import {DataForForm} from "../../../../model/DataForForm";
+import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-questionnaire-form',
@@ -13,40 +13,148 @@ import {FieldOption} from "../../../../model/FieldOption";
 })
 export class QuestionnaireFormComponent implements OnInit {
 
-  public numOfFields: Field[] = [];
-  public numOfOptions: FieldOption[] = [];
-  private answer: Answer[] = [new Answer(1, "Politykin")]
+  arr: DataForForm[] = [];
+  model: NgbDateStruct;
+  formGroup: FormGroup;
+  formControlArr = [];
+  private radioAnswer: Answer;
+  private formGroupKeys: string[];
+  private formGroupValues: string[];
+  private formGroupAnswer: Answer[] = [];
+  private formGroupKeyValue: Answer;
+  private dateModel: Answer;
+  private checkModel: Answer;
+  private checkboxValues: string[] = [];
+  private date: number[];
+  private questionList: Object[] = [];
+  private keys: string[];
+  private questions: any[];
+
 
   constructor(private service: QuestionnaireFormService,
-              private mockService: QuestionnaireFormMockService) {
+              public router: Router) {
   }
 
   ngOnInit(): void {
-
+    this.formGroup = new FormGroup({
+      A: new FormControl('', [
+        // Validators.pattern('(^[A-Z][a-z]+)+\,(^[A-Z][a-z]+)+')
+      ])
+    })
+    this.getFields();
+    this.formGroup.removeControl("A");
   }
-
-  // getFields() {
-  //   this.service.getFields().subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
-  //
-  // postAnswer(answer: Answer[]) {
-  //   this.service.postAnswer(answer).subscribe(data => {
-  //     console.log(data);
-  //   })
-  // }
 
   getFields() {
-    this.mockService.getFields().subscribe(data => {
-      console.log(data);
+    this.service.getFields().subscribe((data: DataForForm[]) => {
+      this.arr = data;
+      this.arr.forEach(el => {
+          if (el.type == 1 || el.type == 2 || el.type == 5) {
+            if (el.required) {
+              this.makeNewRequiredFormControl(el.id, el.label)
+            } else {
+              this.makeNewFormControl(el.id, el.label);
+            }
+          }
+        }
+      )
     })
   }
 
-  postAnswer(answer = this.answer) {
-    this.mockService.postAnswer(answer).subscribe(data => {
-      console.log(data);
+  makeNewFormControl(id, formControlLabel) {
+    this.formGroup.addControl(formControlLabel, new FormControl('', []));
+    this.formControlArr.push(formControlLabel);
+    this.questionList.push({id, formControlLabel});
+
+  }
+
+  makeNewRequiredFormControl(id, formControlLabel) {
+    this.formGroup.addControl(formControlLabel, new FormControl('', [Validators.required]));
+    this.formControlArr.push(formControlLabel);
+    this.questionList.push({id, formControlLabel});
+  }
+
+  getRadioButtonAnswer() {
+    this.arr.forEach(el => {
+      if (el.type === 3) {
+        var radios = document.getElementsByName(el.label);
+        for (let i = 0; i < radios.length; i++) {
+          //@ts-ignore
+          if (radios[i].checked) {
+            //@ts-ignore
+            this.radioAnswer = new Answer(el.id, el.label, radios[i].value);
+            this.formGroupAnswer.push(this.radioAnswer);
+            return true; // checked
+          }
+        }
+      }
     })
+  }
+
+  getDateAnswer() {
+    this.arr.forEach(el => {
+      if (el.type === 6) {
+        this.date = Object.values(this.model);
+        this.dateModel = new Answer(el.id, el.label, this.date.join('/'));
+        this.formGroupAnswer.push(this.dateModel);
+      }
+    })
+  }
+
+  getCheckboxAnswer() {
+    this.checkboxValues = [];
+    this.arr.forEach(el => {
+      if (el.type === 4) {
+        var radios = document.getElementsByName(el.label);
+        for (let i = 0; i < radios.length; i++) {
+          //@ts-ignore
+          if (radios[i].checked) {
+            //@ts-ignore
+            this.checkboxValues.push(radios[i].value);
+          }
+        }
+        //@ts-ignore
+        this.checkModel = new Answer(el.id, el.label, this.checkboxValues.join(', '));
+        this.formGroupAnswer.push(this.checkModel);
+      }
+    })
+  }
+
+  getAnswer() {
+    this.formGroupKeys = Object.keys(this.formGroup.getRawValue());
+    this.formGroupValues = Object.values(this.formGroup.getRawValue());
+    for (let i = 0; i < this.formGroupValues.length; i++) {
+      if (this.formGroupValues[i] != '') {
+        this.questions = Object.values(this.questionList[i]);
+        this.formGroupKeys.forEach(el => {
+          if (this.questions[1] === el) {
+            this.formGroupKeyValue = new Answer(this.questions[0], this.formGroupKeys[i], this.formGroupValues[i]);
+            this.formGroupAnswer.push(this.formGroupKeyValue);
+          }
+        })
+      }
+    }
+    this.getRadioButtonAnswer();
+    this.getDateAnswer();
+    this.getCheckboxAnswer();
+    this.questionList = [];
+  }
+
+  makeAnswerInCorrectOrder(formGroupAnswer) {
+    formGroupAnswer.sort((a, b) => a.id > b.id ? 1 : -1);
+    return formGroupAnswer;
+  }
+
+
+  save() {
+    this.getAnswer();
+    this.service.addResponse(this.makeAnswerInCorrectOrder(this.formGroupAnswer)).subscribe((data) =>
+        (data),
+      error => {
+        alert("Invalid data")
+      },
+      () => this.router.navigate(['../home/successSubmit']));
+    this.formGroupAnswer = [];
   }
 
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RegisterService} from "../../services/register-service";
 import {User} from "../../../../model/User";
-import {RegisterMockService} from "../../mock-services/register-mock-service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
@@ -42,8 +41,7 @@ export class RegisterComponent implements OnInit {
         Validators.pattern('^[A-Z][a-z]+')
       ]),
       Phone: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-9]+')
+        Validators.required
       ])
     })
   }
@@ -60,7 +58,7 @@ export class RegisterComponent implements OnInit {
       this.formGroup.value.Surname,
       this.formGroup.value.Phone))
       .subscribe(data =>
-          console.log(data),
+          data,
         error => {
           alert("User with this email already exists")
         },
