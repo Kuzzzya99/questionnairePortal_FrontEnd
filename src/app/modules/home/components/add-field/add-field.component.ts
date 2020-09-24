@@ -71,6 +71,7 @@ export class AddFieldComponent implements OnInit {
   }
 
   addField() {
+    this.arr = [];
     this.service.addField(this.formGroup.value.Label,
       this.findTypeIndex(),
       this.parseOption(),

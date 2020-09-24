@@ -5,6 +5,12 @@ import {DataForForm} from "../../../../model/DataForForm";
 import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AutobahnService} from "../../../../shared/services/autobahn-service";
+import { StompService } from 'ng2-stomp-service';
+import {environment} from "../../../../../environments/environment";
+import {Subscription} from "rxjs";
+
+
 
 @Component({
   selector: 'app-questionnaire-form',
@@ -13,6 +19,11 @@ import {Router} from "@angular/router";
 })
 export class QuestionnaireFormComponent implements OnInit {
 
+
+  private wsConf = {
+    host: environment.ws
+  }
+  subscription: Subscription;
   arr: DataForForm[] = [];
   model: NgbDateStruct;
   formGroup: FormGroup;
@@ -32,9 +43,27 @@ export class QuestionnaireFormComponent implements OnInit {
 
 
   constructor(private service: QuestionnaireFormService,
-              public router: Router) {
+              public router: Router,
+              private autobahnService: AutobahnService,
+              // stomp: StompService,
+  ) {
+    // // @ts-ignore
+    // stomp.configure(this.wsConf);
+    //
+    // stomp.startConnect().then(() => {
+    //   stomp.done('init');
+    //   console.log('connected');
+    //   this.subscription = stomp.subscribe('/destination', this.response);
+    //
+    //
+    //   stomp.disconnect().then(() => {
+    //     console.log( 'Connection closed' )
+    //   })
+    // });
+
   }
 
+S
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       A: new FormControl('', [
@@ -147,6 +176,7 @@ export class QuestionnaireFormComponent implements OnInit {
 
 
   save() {
+    this.autobahnService.Autobahn();
     this.getAnswer();
     this.service.addResponse(this.makeAnswerInCorrectOrder(this.formGroupAnswer)).subscribe((data) =>
         (data),

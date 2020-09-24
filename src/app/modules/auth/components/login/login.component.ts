@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         this.cookieService.set('userId', data.id);
         this.cookieService.set('token', data.token);
         this.cookieService.set('tokenId', data.tokenId);
-        this.autobahnService.Autobahn();
+        // this.autobahnService.Autobahn();
       },
       error =>
         alert('Wrong user or password'),

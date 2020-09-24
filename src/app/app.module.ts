@@ -8,6 +8,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CookieService} from "ngx-cookie-service";
 import {TokenInterceptorService} from "./interceptor/token-interceptor-service";
+// import { StompServ/ice } from 'ng2-stomp-service';
+
 
 @NgModule({
   declarations: [
@@ -20,8 +22,11 @@ import {TokenInterceptorService} from "./interceptor/token-interceptor-service";
     BrowserAnimationsModule,
     NgbModule
   ],
-  providers: [CookieService,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+  providers: [
+    CookieService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    // StompS/ervice,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
