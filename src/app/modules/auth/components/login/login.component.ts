@@ -3,7 +3,6 @@ import {LoginService} from "../../services/login-service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
-import {AutobahnService} from "../../../../shared/services/autobahn-service";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               private cookieService: CookieService,
-              public router: Router,
-              private autobahnService: AutobahnService,
+              public router: Router
               ) {
   }
 
