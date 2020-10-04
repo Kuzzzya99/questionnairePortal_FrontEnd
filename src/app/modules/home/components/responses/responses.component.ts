@@ -3,6 +3,9 @@ import {ResponsesService} from "../../services/responses-service";
 import {Field} from "../../../../model/Field";
 import {Worksheet} from "../../../../model/Worksheet";
 
+declare var SockJS;
+declare var Stomp;
+
 @Component({
   selector: 'app-responses',
   templateUrl: './responses.component.html',
@@ -14,17 +17,33 @@ export class ResponsesComponent implements OnInit {
   pageSize = 10;
   public arrOfFields: Field[] = [];
   public arrOfAnswers: Worksheet[] = [];
+  public newWorksheet: Worksheet;
   @Input() fieldId;
-  private temp: any;
   public arrOfWorksheets: Worksheet[] = [];
-  public arrOfValues: Worksheet;
 
   constructor(private service: ResponsesService) {
+    this.arrOfWorksheets = [];
+    this.initializeWebSocketConnection();
   }
 
   ngOnInit(): void {
     this.findAllFields();
     this.responses();
+  }
+
+  public stompClient;
+
+  initializeWebSocketConnection() {
+    const serverUrl = 'http://localhost:8087/ws';
+    const ws = new SockJS(serverUrl);
+    this.stompClient = Stomp.over(ws);
+    const that = this;
+    this.stompClient.connect({}, function (frame) {
+      that.stompClient.subscribe('/topic/response', (message) => {
+        that.newWorksheet = JSON.parse(message.body);
+        that.arrOfWorksheets.push(that.newWorksheet);
+      });
+    });
   }
 
   findAllFields() {
@@ -35,7 +54,9 @@ export class ResponsesComponent implements OnInit {
 
   responses() {
     this.service.responses().subscribe((data: Worksheet[]) => {
-      this.arrOfWorksheets = data;
+      if (data) {
+        this.arrOfWorksheets = data;
+      }
     })
   }
 

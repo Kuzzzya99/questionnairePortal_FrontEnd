@@ -5,9 +5,6 @@ import {DataForForm} from "../../../../model/DataForForm";
 import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {environment} from "../../../../../environments/environment";
-import {Subscription} from "rxjs";
-
 
 
 @Component({
@@ -38,7 +35,7 @@ export class QuestionnaireFormComponent implements OnInit {
   constructor(private service: QuestionnaireFormService,
               public router: Router
   ) {
-   }
+  }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -152,10 +149,17 @@ export class QuestionnaireFormComponent implements OnInit {
 
 
   save() {
+    console.log(this.formGroup);
+    console.log(this.formGroupAnswer);
     this.getAnswer();
-    this.service.sendMessage(this.formGroupAnswer);
-    this.formGroupAnswer = [];
-    this.router.navigate(['../home/successSubmit']);
+    this.service.addResponse(this.makeAnswerInCorrectOrder(this.formGroupAnswer)).subscribe(data =>
+        data,
+      error => {
+        alert("Invalid data")
+      },
+      () => (this.router.navigate(['../home/successSubmit']),
+        this.formGroupAnswer = [])
+    )
   }
 
 }
