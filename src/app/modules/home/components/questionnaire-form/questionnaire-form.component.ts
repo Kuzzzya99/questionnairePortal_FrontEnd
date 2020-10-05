@@ -154,7 +154,7 @@ export class QuestionnaireFormComponent implements OnInit {
 
   save() {
     this.getAnswer();
-    this.service.addResponse(this.makeAnswerInCorrectOrder(this.formGroupAnswer)).subscribe(data =>
+    this.service.addResponse(this.makeAnswerInCorrectOrder(this.formGroupAnswer), this.formGroup.value.EmailOfUser).subscribe(data =>
         data,
       error => {
         alert("Invalid data")

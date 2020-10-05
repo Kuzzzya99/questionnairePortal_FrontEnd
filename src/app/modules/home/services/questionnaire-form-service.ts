@@ -19,9 +19,9 @@ export class QuestionnaireFormService {
     return this.http.get(environment.host + "/responses/form", {params: param})
   }
 
-  addResponse(response) {
+  addResponse(response, email) {
     response = new Object(response);
-    let param = new HttpParams().set("userId", this.cookieService.get("userId"));
+    let param = new HttpParams().set("email", email);
     return this.http.post(environment.host + "/responses/add", {response}, {params: param})
   }
 }
