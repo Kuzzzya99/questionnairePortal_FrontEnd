@@ -39,16 +39,14 @@ export class QuestionnaireFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      A: new FormControl('', [
+      Email: new FormControl('', [
         // Validators.pattern('(^[A-Z][a-z]+)+\,(^[A-Z][a-z]+)+')
       ])
     })
-    this.getFields();
-    this.formGroup.removeControl("A");
   }
 
-  getFields() {
-    this.service.getFields().subscribe((data: DataForForm[]) => {
+  getFields(email) {
+    this.service.getFields(email).subscribe((data: DataForForm[]) => {
       this.arr = data;
       this.arr.forEach(el => {
           if (el.type == 1 || el.type == 2 || el.type == 5) {
