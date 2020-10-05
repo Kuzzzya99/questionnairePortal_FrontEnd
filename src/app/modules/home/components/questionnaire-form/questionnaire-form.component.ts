@@ -45,6 +45,11 @@ export class QuestionnaireFormComponent implements OnInit {
     })
   }
 
+  getEmail(){
+    let email = this.formGroup.value.Email;
+    this.getFields(email);
+  }
+
   getFields(email) {
     this.service.getFields(email).subscribe((data: DataForForm[]) => {
       this.arr = data;
