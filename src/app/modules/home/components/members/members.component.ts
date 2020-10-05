@@ -42,7 +42,7 @@ export class MembersComponent implements OnInit, OnChanges {
   public stompClient;
 
   initializeWebSocketConnection() {
-    const serverUrl = 'http://localhost:8087/ws';
+    const serverUrl = 'https://questionnaireportal.herokuapp.com/ws';
     const ws = new SockJS(serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
