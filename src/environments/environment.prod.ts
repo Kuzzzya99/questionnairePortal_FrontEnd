@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  host: "https://questionnaireportal.herokuapp.com/",
+  ws: 'ws://questionnaireportal.herokuapp.com/ws'
 };
