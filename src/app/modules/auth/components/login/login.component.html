@@ -16,5 +16,22 @@
       <div class="new-account__text">Don't have account?</div>
       <div class="new-account__link" routerLink="../register" routerLinkActive="active">Sign Up</div>
     </div>
+    <div class="form2">
+      <div class="title2">
+        Face Authorization
+      </div>
+      <div class="upload-container">
+        <input id="551" type="file" name="photo" ng2FileSelect [uploader]="uploader"
+               (change)="onFileSelected1($event)">
+        <input id="551" type="file" name="photo" ng2FileSelect [uploader]="uploader"
+               (change)="onFileSelected2($event)">
+        <button type="button" class="btn btn-success btn-s"
+                (click)="upload()"
+                [disabled]="!uploader.getNotUploadedItems().length">
+          UPLOAD PHOTO
+        </button>
+        <div>{{text}}</div>
+      </div>
+    </div>
   </div>
 </div>

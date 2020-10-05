@@ -6,6 +6,7 @@ import {HomePageComponent} from "./components/home-page/home-page.component";
 import {QuestionnaireFormComponent} from "./components/questionnaire-form/questionnaire-form.component";
 import {ResponsesComponent} from "./components/responses/responses.component";
 import {SuccessSubmitComponent} from "./components/success-submit/success-submit.component";
+import {MembersComponent} from "./components/members/members.component";
 
 const homeRoutes: Routes = [
   {path: 'changePassword', component: ChangePasswordComponent},
@@ -14,6 +15,7 @@ const homeRoutes: Routes = [
   {path: 'questionnaireForm', component: QuestionnaireFormComponent},
   {path: 'responses', component: ResponsesComponent},
   {path: 'successSubmit', component: SuccessSubmitComponent},
+  {path: 'members', component: MembersComponent},
   {path: '**', redirectTo: 'homePage', pathMatch: 'full'},
   {path: '', loadChildren: 'homePage', pathMatch: 'full'},
 ];

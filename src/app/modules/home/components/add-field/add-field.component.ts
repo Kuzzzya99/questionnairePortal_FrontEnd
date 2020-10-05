@@ -31,7 +31,7 @@ export class AddFieldComponent implements OnInit {
     {value: 5, viewValue: 'Combobox'},
     {value: 6, viewValue: 'Date'}];
 
-  options = ['']
+  options = []
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -71,12 +71,20 @@ export class AddFieldComponent implements OnInit {
   }
 
   addField() {
-    this.service.addField(this.formGroup.value.Label,
+    console.log((this.formGroup.getRawValue()));
+    console.log(this.formGroup.value.Label);
+    console.log(this.findTypeIndex());
+    console.log(this.parseOption());
+    console.log(this.isRequired);
+    console.log(this.isActive);
+    this.service.addField(
+      this.formGroup.value.Label,
       this.findTypeIndex(),
       this.parseOption(),
       this.isRequired,
       this.isActive,
-      this.cookieService.get('userId')).subscribe((response: any) => {
+      this.cookieService.get('userId')
+    ).subscribe((response: any) => {
         this.arr.push({
           label: response.label,
           fieldId: response.fieldId,
@@ -84,6 +92,11 @@ export class AddFieldComponent implements OnInit {
           required: response.required,
           active: response.active
         });
+        this.formGroup.reset();
+        this.options=[''];
+        this.isRequired = false;
+        this.isActive = false;
+
       },
       error => {
         alert("Invalid data")
@@ -100,6 +113,9 @@ export class AddFieldComponent implements OnInit {
   }
 
   parseOption() {
+    if(!this.formGroup.value.Option){
+      return [];
+    }
     return this.formGroup.value.Option.split(", ");
   }
 

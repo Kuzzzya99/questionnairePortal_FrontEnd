@@ -6,8 +6,12 @@ import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 import {CookieService} from "ngx-cookie-service";
 import {TokenInterceptorService} from "./interceptor/token-interceptor-service";
+import {FileUploadModule} from "ng2-file-upload";
+
+
 
 @NgModule({
   declarations: [
@@ -18,10 +22,14 @@ import {TokenInterceptorService} from "./interceptor/token-interceptor-service";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    FileUploadModule
   ],
-  providers: [CookieService,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+  providers: [
+    CookieService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 
 @Injectable({
@@ -17,5 +17,17 @@ export class LoginService {
     );
   }
 
+
+  upload(image, targetImage) {
+
+    let testData = new FormData();
+    testData.append('image', image, image.name);
+    testData.append('targetImage', targetImage, targetImage.name);
+
+    return this.http.post(environment.host + "/photoAuth", testData, {
+      reportProgress: true,
+      responseType: 'text'
+    })
+  }
 }
 

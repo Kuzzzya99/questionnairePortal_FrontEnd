@@ -1,0 +1,85 @@
+<div class="container">
+  <app-nav [signIn]=true style="width: 100%"></app-nav>
+  <div class="container__inner">
+    <div class="title">
+      <div class="title__text">Members</div>
+    </div>
+    <div class="classroom">
+
+      <div class="end">
+        <div class="form button">
+          <button (click)="setRoleStudent()">JOIN AS STUDENT</button>
+        </div>
+        <div class="form button">
+          <button (click)="setRoleTeacher()">JOIN AS TEACHER</button>
+        </div>
+        <div class="form button">
+          <button (click)="leave()">DISCONNECT</button>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="myleft-column">
+          <div class="form button">
+            <button (click)="risehand()">RISE HAND UP/DOWN</button>
+          </div>
+          <div class="empty">
+
+          </div>
+          <div class="text">
+            Class members
+          </div>
+          <div class="form-members scrolling">
+            <div class="my-row" *ngFor="let item of members">
+              <div>
+                {{item.firstName}} {{item.lastName}}
+              </div>
+              <div class="right-icon" *ngIf="item.raisedHand === true">
+                <mat-icon class="mat-add-icon">pan_tool</mat-icon>
+              </div>
+              <div class="my-right-icon" *ngIf="role === 'teacher'">
+                <mat-icon class="mat-add-icon" (click)="deleteMember(item.userId)">delete</mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="form button">
+            <div class="upload-container">
+              <input id="551" type="file" name="photo" ng2FileSelect [uploader]="uploader"
+                     (change)="onFileSelected($event)">
+              <button type="button" class="btn btn-success btn-s"
+                      (click)="upload()"
+                      [disabled]="!uploader.getNotUploadedItems().length">
+                UPLOAD FILE
+              </button>
+            </div>
+          </div>
+          <div class="text">
+            Files
+          </div>
+          <div class="form-members scrolling">
+            <div class="my-row" *ngFor="let item of files; index as i">
+              <div class="my-row" *ngIf="item.canWatch.length == 0 || role === 'teacher' || userCanWatch(item.canWatch) == true || item.owner == this.currentUser" >
+                <div (click)="download(item.name)">{{item.name}}</div>
+                <div class="my-right-icon">
+                  <ngb-rating class="stars" (ngModelChange)="sendStars($event, i)" [ngModel]="item.rate" [max]="10" *ngIf="role === 'teacher'"></ngb-rating>
+                  <ngb-rating class="stars" [ngModel]="item.rate" [max]="10" *ngIf="role != 'teacher'"></ngb-rating>
+                  <app-access (click)="getAllAccessUsers()" [allUsers]=allUsers [fileId]=item.id *ngIf="item.owner == this.currentUser"></app-access>
+                  <app-comment (click)="getComments(item.id)" [comments]=comments [fileId]=item.id></app-comment>
+                  <div *ngIf="item.owner == this.currentUser || role === 'teacher'">
+                    <mat-icon class="mat-add-icon" (click)="delete(item.id)">delete</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,233 @@
+.my {
+  height: 100%;
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+
+.empty {
+  height: 38px;
+}
+
+.end {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  margin: 5px 1px;
+}
+
+.classroom {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.myleft-column {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin-right: 15px;
+}
+
+.my-row {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-top: 2px;
+  width: 95%;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  padding-bottom: 7px;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  padding: 0px;
+
+  &__inner {
+    width: 80%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px auto;
+    padding: 0px 10px;
+  }
+
+}
+
+.title {
+  padding-top: 12px;
+  padding-bottom: 7px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  flex-direction: row;
+
+
+  &__text {
+    width: 30%;
+    padding-bottom: 7px;
+
+  }
+
+  &__button-container {
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    width: 70%;
+
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: darkgrey;
+
+  & input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: darkgrey 1px solid;
+    color: darkgrey;
+    margin-bottom: 7px;
+  }
+
+  & button {
+    height: 34px;
+    justify-self: center;
+    background-color: dodgerblue;
+    color: aliceblue;
+    border-radius: 5px;
+    border: 1px dodgerblue solid;
+    margin: 1px 1px;
+  }
+
+  &-members {
+    border: 3px solid;
+    border-color: dodgerblue;
+    height: 300px;
+  }
+}
+
+.small-column {
+  width: 3%;
+}
+
+.big-column {
+  width: 30%;
+}
+
+.mat-add-icon {
+  font-size: 18px;
+  color: dimgrey;
+
+}
+
+.stars{
+  margin-right: 20px;
+  margin-bottom: 10px;
+  color: dimgrey;
+}
+
+.my-right-icon {
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.mat-paginator {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.scrolling {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  white-space: nowrap; /* чтобы картинки стояли в одну линию, не переходя на другую строку */
+}
+
+/* for upload*/
+.fileform {
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 26px;
+  overflow: hidden;
+  padding: 2px;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  width: 230px;
+}
+
+.fileform .selectbutton {
+  background-color: #A2A3A3;
+  border: 1px solid #939494;
+  border-radius: 2px;
+  color: #FFFFFF;
+  float: right;
+  font-size: 16px;
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+  padding: 2px 6px;
+  text-align: center;
+  vertical-align: middle;
+  width: 50px;
+}
+
+.fileform #upload {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -moz-opacity: 0;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  font-size: 150px;
+  height: 30px;
+  z-index: 20;
+}
+
+
+
+

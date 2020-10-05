@@ -11,6 +11,7 @@ export class QuestionnaireFormService {
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
+
   }
 
   getFields() {
@@ -21,6 +22,6 @@ export class QuestionnaireFormService {
   addResponse(response) {
     response = new Object(response);
     let param = new HttpParams().set("userId", this.cookieService.get("userId"));
-    return this.http.post(environment.host + "/responses", {response}, {params: param})
+    return this.http.post(environment.host + "/responses/add", {response}, {params: param})
   }
 }

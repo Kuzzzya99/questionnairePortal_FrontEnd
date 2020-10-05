@@ -16,6 +16,11 @@ import {AddFieldComponent} from './components/add-field/add-field.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {EditFieldComponent} from './components/edit-field/edit-field.component';
+import {MembersComponent} from './components/members/members.component';
+import {FileUploadModule} from "ng2-file-upload";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {CommentComponent} from './components/comment/comment.component';
+import {AccessComponent} from './components/access/access.component';
 
 
 @NgModule({
@@ -27,7 +32,10 @@ import {EditFieldComponent} from './components/edit-field/edit-field.component';
     SuccessSubmitComponent,
     ResponsesComponent,
     AddFieldComponent,
-    EditFieldComponent
+    EditFieldComponent,
+    MembersComponent,
+    CommentComponent,
+    AccessComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +47,9 @@ import {EditFieldComponent} from './components/edit-field/edit-field.component';
     SharedModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule,
+    MatSnackBarModule
   ]
 })
 export class HomeModule {
