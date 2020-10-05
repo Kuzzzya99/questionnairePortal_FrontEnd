@@ -7,6 +7,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {FileUploadModule} from "ng2-file-upload";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     HttpClientModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    NgbModule
+    NgbModule,
+    FileUploadModule
   ]
 })
 export class AuthModule {

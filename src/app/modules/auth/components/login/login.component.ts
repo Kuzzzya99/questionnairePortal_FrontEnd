@@ -3,6 +3,8 @@ import {LoginService} from "../../services/login-service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
+import {FileUploader} from "ng2-file-upload";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,14 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class LoginComponent implements OnInit {
   public formGroup: FormGroup;
-  private cookieValue: string;
+  file;
+  public uploader: FileUploader = new FileUploader({
+    url: environment.host + "/photoAuth",
+    additionalParameter: File
+  });
+  file1: any;
+  file2: any;
+  public text;
 
   constructor(private loginService: LoginService,
               private cookieService: CookieService,
@@ -47,4 +56,18 @@ export class LoginComponent implements OnInit {
       () => this.router.navigate(['../home']))
   }
 
+  upload() {
+    this.loginService.upload(this.file1, this.file2).subscribe((data) => {
+      this.text = data;
+    })
+  }
+
+  onFileSelected1($event: any) {
+    console.log($event);
+    this.file1 = $event.target.files[0];
+  }
+  onFileSelected2($event: any) {
+    console.log($event);
+    this.file2 = $event.target.files[0];
+  }
 }

@@ -21,7 +21,6 @@ export class MembersComponent implements OnInit, OnChanges {
   public members: Member[] = [];
   private newMember: Member;
   private index;
-  public isOwner: boolean = false;
   file;
   currentRate = [];
   public files: FileModel[] = [];
@@ -30,10 +29,8 @@ export class MembersComponent implements OnInit, OnChanges {
     additionalParameter: File
   });
   public currentUser: string;
-  public haveAccess: boolean = false;
   public allUsers: AccessModel[];
   public comments: CommentModel[];
-  private userIsOneOfWatchers: boolean;
 
   constructor(private service: MembersService,
               private cookieService: CookieService,

@@ -45,7 +45,6 @@ export class MembersService {
   }
 
   upload(file) {
-    console.log(file);
     let testData = new FormData();
     testData.append('file', file, file.name);
     testData.append('userId', this.cookieService.get('userId'))
