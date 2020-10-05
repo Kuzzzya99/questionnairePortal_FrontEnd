@@ -19,20 +19,25 @@ export class MembersService {
   }
 
   join(role) {
-    let param = new HttpParams().set("userId", this.cookieService.get("userId"));
-    return this.http.post(environment.host + "/member/join", {role}, {params: param})
+    let param = new HttpParams();
+      param = param.set("userId", this.cookieService.get("userId"));
+    param = param.set("role", role);
+    return this.http.post(environment.host + "/member/join", {}, {params: param})
   }
 
   riseHand() {
-    return this.http.post(environment.host + "/member/raise_hand", {userId: this.cookieService.get("userId")})
+    let param = new HttpParams().set("userId", this.cookieService.get("userId"));
+    return this.http.post(environment.host + "/member/raise_hand", {}, {params:param})
   }
 
   leave() {
-    return this.http.post(environment.host + "/member/leave", {userId: this.cookieService.get("userId")})
+    let param = new HttpParams().set("userId", this.cookieService.get("userId"));
+    return this.http.delete(environment.host + "/member/leave", {params:param})
   }
 
   deleteMember(userId) {
-    return this.http.post(environment.host + "/member/leave", {userId})
+    let param = new HttpParams().set("userId", userId);
+    return this.http.delete(environment.host + "/member/leave", {params:param})
   }
 
   list() {
@@ -56,9 +61,21 @@ export class MembersService {
     return this.http.get(environment.host + "/member/download", {params: param})
   }
 
-  delete(fileName) {
-    let param = new HttpParams().set("fileName", fileName)
-    return this.http.get(environment.host + "/member/delete", {params: param})
+  delete(fileId) {
+    let param = new HttpParams().set("fileId", fileId)
+    return this.http.delete(environment.host + "/member/delete", {params: param})
   }
 
+  getComments(fileId){
+    let param = new HttpParams().set("fileId", fileId);
+    return this.http.get(environment.host + "/member/comment", {params:param})
+  }
+
+  getAccessUsers(){
+    return this.http.get(environment.host + "/user")
+  }
+
+  rate(fileId, rate){
+    return this.http.post(environment.host + "/member/rate", {fileId, rate} )
+  }
 }

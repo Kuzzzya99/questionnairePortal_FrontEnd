@@ -1,0 +1,18 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Give access to</h4>
+  </div>
+  <div class="comment">
+    <label *ngFor="let item of allUsers">
+      <input type="checkbox" name="{{item.firstName}}" value="{{item.id}}"> {{item.firstName}} {{item.lastName}}</label>
+  </div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark my-button-white" (click)="d('Cross click')">Cancel</button>
+    <button type="button" class="title__button my-button-blue" (click)="sendNewAccess()">
+      Send
+    </button>
+  </div>
+</ng-template>
+<mat-icon class="mat-add-icon" (click)="open(content)">account_circle</mat-icon>

@@ -1,0 +1,24 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">All comments</h4>
+  </div>
+    <div class="comment" *ngFor="let item of comments">
+      {{item.username}} : {{item.comment}}
+    </div>
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add comment</h4>
+  </div>
+  <div class="modal-body my-modal-body">
+    <div class="form" [formGroup]="formGroup">
+      <div>Comment <input class="input-class" type="text" formControlName="Comment"></div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark my-button-white" (click)="d('Cross click')">Cancel</button>
+      <button type="button" class="title__button my-button-blue" (click)="sendComment()">
+        Send
+      </button>
+    </div>
+  </div>
+</ng-template>
+<mat-icon class="mat-add-icon" (click)="open(content)">comment</mat-icon>
