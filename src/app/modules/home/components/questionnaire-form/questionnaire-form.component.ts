@@ -39,16 +39,20 @@ export class QuestionnaireFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      A: new FormControl('', [
+      EmailOfUser: new FormControl('', [
         // Validators.pattern('(^[A-Z][a-z]+)+\,(^[A-Z][a-z]+)+')
       ])
     })
-    this.getFields();
-    this.formGroup.removeControl("A");
   }
 
-  getFields() {
-    this.service.getFields().subscribe((data: DataForForm[]) => {
+  getEmail(){
+    this.makeNewRequiredFormControl(0, "EmailOfUser")
+    let email = this.formGroup.value.EmailOfUser;
+    this.getFields(email);
+  }
+
+  getFields(email) {
+    this.service.getFields(email).subscribe((data: DataForForm[]) => {
       this.arr = data;
       this.arr.forEach(el => {
           if (el.type == 1 || el.type == 2 || el.type == 5) {
@@ -125,9 +129,16 @@ export class QuestionnaireFormComponent implements OnInit {
   getAnswer() {
     this.formGroupKeys = Object.keys(this.formGroup.getRawValue());
     this.formGroupValues = Object.values(this.formGroup.getRawValue());
-    for (let i = 0; i < this.formGroupValues.length; i++) {
+
+    console.log(this.formGroupKeys);
+    console.log(this.formGroupValues);
+
+
+    for (let i = 1; i < this.formGroupValues.length; i++) {
       if (this.formGroupValues[i] != '') {
+        console.log(this.questionList);
         this.questions = Object.values(this.questionList[i]);
+        console.log(this.questions);
         this.formGroupKeys.forEach(el => {
           if (this.questions[1] === el) {
             this.formGroupKeyValue = new Answer(this.questions[0], this.formGroupKeys[i], this.formGroupValues[i]);
@@ -149,8 +160,6 @@ export class QuestionnaireFormComponent implements OnInit {
 
 
   save() {
-    console.log(this.formGroup);
-    console.log(this.formGroupAnswer);
     this.getAnswer();
     this.service.addResponse(this.makeAnswerInCorrectOrder(this.formGroupAnswer)).subscribe(data =>
         data,

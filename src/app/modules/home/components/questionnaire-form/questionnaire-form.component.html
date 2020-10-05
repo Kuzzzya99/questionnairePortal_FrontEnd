@@ -3,6 +3,15 @@
   <div class="container__inner">
     <div class="title">
     </div>
+
+    <div>Enter email of user</div>
+    <div [formGroup]="formGroup">
+      <label>
+        <input class="single-line-input" type="text" formControlName="EmailOfUser">
+      </label>
+    </div>
+    <button class="greybutton" (click)="getEmail()">GET</button>
+
     <div class="form" [formGroup]="formGroup">
       <div *ngFor="let item of arr">
         <div class="row">

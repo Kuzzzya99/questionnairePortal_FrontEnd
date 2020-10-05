@@ -14,8 +14,8 @@ export class QuestionnaireFormService {
 
   }
 
-  getFields() {
-    let param = new HttpParams().set("userId", this.cookieService.get("userId"));
+  getFields(email) {
+    let param = new HttpParams().set("email", email);
     return this.http.get(environment.host + "/responses/form", {params: param})
   }
 

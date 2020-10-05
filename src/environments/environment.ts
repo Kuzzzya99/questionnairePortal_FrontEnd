@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  host: "https://questionnaireportal.herokuapp.com/",
+  host: "http://localhost:8087",
   ws: 'ws://localhost:8087/ws',
 };
 
