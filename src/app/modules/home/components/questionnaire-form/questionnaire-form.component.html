@@ -5,8 +5,9 @@
     </div>
 
     <div>Enter email of user</div>
+    <div [formGroup]="formGroup">
     <input class="single-line-input" type="text" formControlName="Email">
-
+    </div>
     <button (click)="getEmail()">GET</button>
     <div class="form" [formGroup]="formGroup">
       <div *ngFor="let item of arr">
