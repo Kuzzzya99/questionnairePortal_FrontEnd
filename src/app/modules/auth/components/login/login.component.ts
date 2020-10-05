@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
     console.log($event);
     this.file1 = $event.target.files[0];
   }
+
   onFileSelected2($event: any) {
     console.log($event);
     this.file2 = $event.target.files[0];

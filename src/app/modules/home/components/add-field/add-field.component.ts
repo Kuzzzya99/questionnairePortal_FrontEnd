@@ -93,7 +93,7 @@ export class AddFieldComponent implements OnInit {
           active: response.active
         });
         this.formGroup.reset();
-        this.options=[''];
+        this.options = [''];
         this.isRequired = false;
         this.isActive = false;
 
@@ -113,7 +113,7 @@ export class AddFieldComponent implements OnInit {
   }
 
   parseOption() {
-    if(!this.formGroup.value.Option){
+    if (!this.formGroup.value.Option) {
       return [];
     }
     return this.formGroup.value.Option.split(", ");

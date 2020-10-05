@@ -8,7 +8,6 @@ import {CookieService} from "ngx-cookie-service";
 })
 
 export class HomePageService {
-  private field: string[];
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
@@ -22,21 +21,4 @@ export class HomePageService {
   deleteField(fieldId) {
     return this.http.delete(environment.host + '/fields/' + fieldId)
   }
-
-
-  // homePagePost(field: Field) {
-  //   return this.http.post(environment.host + "/fields", {field})
-  // }
-  //
-  // homePageGet() {
-  //   return this.http.get(environment.host + "/fields")
-  // }
-  //
-  // homePagePut(field: Field) {
-  //   return this.http.put(environment.host + "/fields", {field})
-  // }
-  //
-  // homePageDelete(id) {
-  //   return this.http.delete(environment.host + "/fields/id=" + id)
-  // }
 }

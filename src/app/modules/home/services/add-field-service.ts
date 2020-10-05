@@ -9,8 +9,7 @@ import {CookieService} from "ngx-cookie-service";
 
 export class AddFieldService {
 
-  constructor(private http: HttpClient,
-              private cookieService: CookieService) {
+  constructor(private http: HttpClient) {
   }
 
   addField(label: string,

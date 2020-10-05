@@ -39,14 +39,15 @@ export class QuestionnaireFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      Email: new FormControl('', [
+      EmailOfUser: new FormControl('', [
         // Validators.pattern('(^[A-Z][a-z]+)+\,(^[A-Z][a-z]+)+')
       ])
     })
   }
 
-  getEmail(){
-    let email = this.formGroup.value.Email;
+  getEmail() {
+    this.makeNewRequiredFormControl(0, "EmailOfUser")
+    let email = this.formGroup.value.EmailOfUser;
     this.getFields(email);
   }
 
@@ -128,7 +129,7 @@ export class QuestionnaireFormComponent implements OnInit {
   getAnswer() {
     this.formGroupKeys = Object.keys(this.formGroup.getRawValue());
     this.formGroupValues = Object.values(this.formGroup.getRawValue());
-    for (let i = 0; i < this.formGroupValues.length; i++) {
+    for (let i = 1; i < this.formGroupValues.length; i++) {
       if (this.formGroupValues[i] != '') {
         this.questions = Object.values(this.questionList[i]);
         this.formGroupKeys.forEach(el => {
@@ -152,8 +153,6 @@ export class QuestionnaireFormComponent implements OnInit {
 
 
   save() {
-    console.log(this.formGroup);
-    console.log(this.formGroupAnswer);
     this.getAnswer();
     this.service.addResponse(this.makeAnswerInCorrectOrder(this.formGroupAnswer)).subscribe(data =>
         data,

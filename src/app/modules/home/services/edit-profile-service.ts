@@ -15,12 +15,14 @@ export class EditProfileService {
 
   editProfile(firstName: string,
               lastName: string,
+              login: string,
               phoneNumber: string) {
     return this.http.post(environment.host + '/user/' +
       this.cookieService.get('userId') +
       '/edit_profile', {
         firstName,
         lastName,
+        login,
         phoneNumber
       }
     )

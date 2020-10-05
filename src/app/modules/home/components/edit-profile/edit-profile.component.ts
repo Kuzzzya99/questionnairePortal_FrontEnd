@@ -29,6 +29,10 @@ export class EditProfileComponent implements OnInit {
       LastName: new FormControl('', [
         Validators.pattern('^[A-Z][a-z]+')
       ]),
+      Login: new FormControl('', [
+        Validators.email,
+        Validators.minLength(5)
+      ]),
       Phone: new FormControl(null, [
         Validators.pattern('^[\\+\\d+]')
       ])
@@ -40,12 +44,14 @@ export class EditProfileComponent implements OnInit {
       (data: any) => (
         this.firstName = data.firstName,
           this.lastName = data.lastName,
+          this.login = data.login,
           this.phone = data.phoneNumber))
   }
 
   editProfile() {
     this.service.editProfile(this.formGroup.value.FirstName,
       this.formGroup.value.LastName,
+      this.formGroup.value.Login,
       this.formGroup.value.Phone).subscribe(data =>
         data,
       error => {

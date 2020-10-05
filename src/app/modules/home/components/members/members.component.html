@@ -61,12 +61,15 @@
           </div>
           <div class="form-members scrolling">
             <div class="my-row" *ngFor="let item of files; index as i">
-              <div class="my-row" *ngIf="item.canWatch.length == 0 || role === 'teacher' || userCanWatch(item.canWatch) == true || item.owner == this.currentUser" >
+              <div class="my-row"
+                   *ngIf="item.canWatch.length == 0 || role === 'teacher' || userCanWatch(item.canWatch) == true || item.owner == this.currentUser">
                 <div (click)="download(item.name)">{{item.name}}</div>
                 <div class="my-right-icon">
-                  <ngb-rating class="stars" (ngModelChange)="sendStars($event, i)" [ngModel]="item.rate" [max]="10" *ngIf="role === 'teacher'"></ngb-rating>
+                  <ngb-rating class="stars" (ngModelChange)="sendStars($event, i)" [ngModel]="item.rate" [max]="10"
+                              *ngIf="role === 'teacher'"></ngb-rating>
                   <ngb-rating class="stars" [ngModel]="item.rate" [max]="10" *ngIf="role != 'teacher'"></ngb-rating>
-                  <app-access (click)="getAllAccessUsers()" [allUsers]=allUsers [fileId]=item.id *ngIf="item.owner == this.currentUser"></app-access>
+                  <app-access (click)="getAllAccessUsers()" [allUsers]=allUsers [fileId]=item.id
+                              *ngIf="item.owner == this.currentUser"></app-access>
                   <app-comment (click)="getComments(item.id)" [comments]=comments [fileId]=item.id></app-comment>
                   <div *ngIf="item.owner == this.currentUser || role === 'teacher'">
                     <mat-icon class="mat-add-icon" (click)="delete(item.id)">delete</mat-icon>

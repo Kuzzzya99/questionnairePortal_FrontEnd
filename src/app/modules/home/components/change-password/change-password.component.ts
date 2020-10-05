@@ -25,11 +25,19 @@ export class ChangePasswordComponent implements OnInit {
       NewPassword: new FormControl('', [
         Validators.required,
         Validators.minLength(4)
-      ])
+      ]),
+      ConfirmNewPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
     });
   }
 
   changePassword() {
+    if (this.formGroup.value.NewPassword != this.formGroup.value.ConfirmNewPassword) {
+      alert("Passwords don't match");
+      return;
+    }
     this.service.changePassword(this.formGroup.value.Password,
       this.formGroup.value.NewPassword).subscribe(data =>
         (data),
